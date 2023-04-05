@@ -23,4 +23,15 @@ class Corso
         INNER JOIN diario.docente d2 ON d2.CF = c.id_tutor; ";
         return $sql;
     }
+
+    function getCorsoById($id_corso)
+    {
+        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizo, '-',q.data_fine) as 'id_quadrimestre', concat(d.nome, d.cognome) as 'id_docente', concat(d2.nome, d2.cognome) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        FROM diario.corso c
+        INNER JOIN diario.quadrimestre q ON q.id = c.id_quadrimestre
+        INNER JOIN diario.docente d ON d.CF = c.id_docente
+        INNER JOIN diario.docente d2 ON d2.CF = c.id_tutor
+        WHERE c.id = '" . $id_corso . "'; ";
+        return $sql;
+    }
 }
