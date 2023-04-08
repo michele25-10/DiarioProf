@@ -34,4 +34,12 @@ class Corso
         WHERE c.id = '" . $id_corso . "'; ";
         return $sql;
     }
+
+    function CountCorsiByType($type)
+    {
+        $sql = "select count(c.id) as 'count'
+        from diario.corso c 
+        where c.tipologia = '" . $type . "';";
+        return $sql;
+    }
 }
