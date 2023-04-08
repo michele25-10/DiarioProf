@@ -6,5 +6,10 @@ class Docente
     {
         $this->conn = $db;
     }
+
+    function getArchieveDocente()
+    {
+        $sql = "select * from docente d;";
+        return $sql;
+    }
 }
-?>
