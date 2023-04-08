@@ -6,5 +6,9 @@ class Quadrimestre
     {
         $this->conn = $db;
     }
+    function getArchiveQuadrimestre()
+    {
+        $sql = "select * from quadrimestre q ;";
+        return $sql;
+    }
 }
-?>
