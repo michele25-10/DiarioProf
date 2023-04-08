@@ -7,4 +7,3 @@ class Incontro
         $this->conn = $db;
     }
 }
-?>

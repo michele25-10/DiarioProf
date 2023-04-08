@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
             'id_docente' => $id_docente,
             'id_tutor' => $id_tutor,
             'materia' => $materia,
-            'data_inizo' => $data_inizio,
+            'data_inizio' => $data_inizio,
             'data_fine' => $data_fine,
             'nome_corso' => $nome_corso,
             'sede' => $sede,

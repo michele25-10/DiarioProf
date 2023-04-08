@@ -16,11 +16,11 @@ class Corso
 
     function getArchiveCorso()
     {
-        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizo, '-',q.data_fine) as 'id_quadrimestre', concat(d.nome, d.cognome) as 'id_docente', concat(d2.nome, d2.cognome) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
-        FROM diario.corso c
+        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizio, ' ',q.data_fine) as 'id_quadrimestre' ,concat(d.nome, ' ' ,d.cognome) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        from diario.corso c        
         INNER JOIN diario.quadrimestre q ON q.id = c.id_quadrimestre
-        INNER JOIN diario.docente d ON d.CF = c.id_docente
-        INNER JOIN diario.docente d2 ON d2.CF = c.id_tutor; ";
+                INNER JOIN diario.docente d ON d.CF = c.id_docente
+                left JOIN diario.docente d2 ON d2.CF = c.id_tutor;";
         return $sql;
     }
 
