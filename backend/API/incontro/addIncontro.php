@@ -1,6 +1,6 @@
 <?php
 require("../../COMMON/connect.php");
-require("../../MODEL/corso.php");
+require("../../MODEL/incontro.php");
 
 header("Content-type: application/json; charset=UTF-8");
 
