@@ -1,22 +1,27 @@
+<?php
+if (empty($_GET['type'])) {
+    header('location: ../index.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Archivio Corsi</title>
+    <title>Corsi per tipologia</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
-
-    <?php require_once(__DIR__ . '\pages\navbar.php'); ?>
+    <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <?php
-    include_once dirname(__FILE__) . '/function/corsi.php';
-    $list_corsi = getArchiveCorsi();
+    include_once dirname(__FILE__) . '/../function/corsi.php';
+    $list_corsi = getCorsiByType($_GET['type']);
     ?>
 
     <div class="container mt-5">
@@ -47,7 +52,7 @@
                             <td><?php echo $row['id_tutor'] ?></td>
                             <td><?php echo $row['materia'] ?></td>
                             <td>
-                                <a href="pages/getInfo.php?id=<?php echo $row['id'] ?>">
+                                <a href="getInfo.php?id=<?php echo $row['id'] ?>">
                                     <button class="btn btn-secondary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />

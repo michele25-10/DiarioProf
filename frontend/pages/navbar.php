@@ -25,15 +25,15 @@
             Visualizza corsi
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Visualizza corsi A</a></li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getCorsiByTipologia.php?type=A">Visualizza corsi A</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Visualizza corsi B</a></li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getCorsiByTipologia.php?type=B">Visualizza corsi B</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Visualizza corsi C</a></li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getCorsiByTipologia.php?type=C">Visualizza corsi C</a></li>
           </ul>
         </li>
         <li class="nav-item">
