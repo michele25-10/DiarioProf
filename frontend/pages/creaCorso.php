@@ -105,7 +105,7 @@ session_start();
               "tipologia" => $_POST['tipologia'],
               "id_quadrimestre" => $_POST['id_quadrimestre'],
               "id_docente" => $_POST['id_docente'],
-              "id_tutor" => NULL,
+              "id_tutor" => "-1",
               "materia" => $_POST['materia'],
               "data_inizio" => $_POST['data_inizio'],
               "data_fine" => $_POST['data_fine'],
@@ -126,7 +126,6 @@ session_start();
               "sede" => $_POST['sede'],
             );
           }
-
           $res = addCorso($data);
           if ($res == 1) {
             echo ('<p class="text-success"><b>Corso aggiunto nel database</b></p>');

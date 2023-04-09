@@ -57,7 +57,6 @@ telefono			varchar(10) not null
 
 alter table diario.corso add constraint fk_corso_quadrimestre foreign key (id_quadrimestre) references diario.quadrimestre(id);
 alter table diario.corso add constraint fk_corso_docente foreign key (id_docente) references diario.docente(CF);
-alter table diario.corso add constraint fk_corso_tutor foreign key (id_tutor) references diario.docente(CF);
 
 alter table diario.incontro add constraint fk_incontro_corso foreign key (id_corso) references diario.corso(id);
 
