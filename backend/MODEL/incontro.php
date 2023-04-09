@@ -6,4 +6,10 @@ class Incontro
     {
         $this->conn = $db;
     }
+    function addIncontro($id_corso, $data_inizio, $note)
+    {
+        $sql = "INSERT INTO diario.incontro(id_corso, data_inizio, note)
+        VALUES ('" . $id_corso . "', '" . $data_inizio . "', '" . $note . "'); ";
+        return $sql;
+    }
 }
