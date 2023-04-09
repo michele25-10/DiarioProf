@@ -37,7 +37,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-white-50" href="#">Aggiungi insegnanti</a>
+          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Lista incontri</a>
         </li>
       </ul>
     </div>
