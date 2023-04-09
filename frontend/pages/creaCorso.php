@@ -10,8 +10,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Diario | CreaCorso</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,11 +31,11 @@ session_start();
       <form class="row g-3" method="post">
         <div class="col-md-6">
           <label class="form-label">Tipologia del corso:</label>
-          <select class="form-select" aria-label="Default select example" name="tipologia" required>
+          <select class="form-select" aria-label="Default select example" name="tipologia" id="tipologia" required>
             <option selected disabled>Tipologia del corso:</option>
-            <option value="A">C</option>
+            <option value="A">A</option>
             <option value="B">B</option>
-            <option value="C">A</option>
+            <option value="C">C</option>
           </select>
         </div>
         <div class="col-md-6">
@@ -57,14 +56,8 @@ session_start();
             <?php endforeach ?>
           </select>
         </div>
-        <div class="col-md-6">
-          <label class="form-label">Tutor:</label>
-          <select class="form-select" aria-label="Default select example" name="id_tutor" required>
-            <option selected disabled>Tutor:</option>
-            <?php foreach ($list_doc as $row) : ?>
-              <option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option>
-            <?php endforeach ?>
-          </select>
+        <div class="col-md-6" id="tutor">
+
         </div>
         <div class="col-md-2">
           <label for="inputCity" class="form-label">Materia:</label>
@@ -97,20 +90,43 @@ session_start();
       include_once dirname(__FILE__) . '\..\function\corsi.php';
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $count = countCorsoByType($_POST['tipologia']);
-        $count = $count + 1;
         if ($count != -1) {
-          $nome_corso = "Corso_" . $_POST['tipologia'] . "_" . $count;      //creo il nome del corso unendo la tipologia con il numero del corso
-          $data = array(
-            "tipologia" => $_POST['tipologia'],
-            "id_quadrimestre" => $_POST['id_quadrimestre'],
-            "id_docente" => $_POST['id_docente'],
-            "id_tutor" => $_POST['id_tutor'],
-            "materia" => $_POST['materia'],
-            "data_inizio" => $_POST['data_inizio'],
-            "data_fine" => $_POST['data_fine'],
-            "nome_corso" => $nome_corso,
-            "sede" => $_POST['sede'],
-          );
+          $count = $count + 1;
+          if ($count < 10) {
+            $nome_corso = "Corso_" . $_POST['tipologia'] . "_00" . $count;      //creo il nome del corso unendo la tipologia con il numero del corso
+          } elseif ($count > 9 && $count < 100) {
+            $nome_corso = "Corso_" . $_POST['tipologia'] . "_0" . $count;      //creo il nome del corso unendo la tipologia con il numero del corso
+          } elseif ($count > 99) {
+            $nome_corso = "Corso_" . $_POST['tipologia'] . "_" . $count;      //creo il nome del corso unendo la tipologia con il numero del corso
+          }
+
+          if ($_POST['tipologia'] == 'A' || $_POST['tipologia'] == 'B') {
+            $data = array(
+              "tipologia" => $_POST['tipologia'],
+              "id_quadrimestre" => $_POST['id_quadrimestre'],
+              "id_docente" => $_POST['id_docente'],
+              "id_tutor" => NULL,
+              "materia" => $_POST['materia'],
+              "data_inizio" => $_POST['data_inizio'],
+              "data_fine" => $_POST['data_fine'],
+              "nome_corso" => $nome_corso,
+              "sede" => $_POST['sede'],
+            );
+          }
+          if ($_POST['tipologia'] == 'C') {
+            $data = array(
+              "tipologia" => $_POST['tipologia'],
+              "id_quadrimestre" => $_POST['id_quadrimestre'],
+              "id_docente" => $_POST['id_docente'],
+              "id_tutor" => $_POST['id_tutor'],
+              "materia" => $_POST['materia'],
+              "data_inizio" => $_POST['data_inizio'],
+              "data_fine" => $_POST['data_fine'],
+              "nome_corso" => $nome_corso,
+              "sede" => $_POST['sede'],
+            );
+          }
+
           $res = addCorso($data);
           if ($res == 1) {
             echo ('<p class="text-success"><b>Corso aggiunto nel database</b></p>');
@@ -124,6 +140,23 @@ session_start();
         }
       }
       ?>
+
+      <script>
+        //Prende i valori che vengono selezionati nella tipologia del corso, per effettuare controlli in seguito.
+        $("#tipologia")
+          .change(function() {
+            $("#tipologia option:selected").each(function() {
+              var str = $(this).text();
+              console.log(str);
+              //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
+              if (str == "C") {
+                $('#tutor').html('<div id="html"> <label class = "form-label" > Tutor: </label> <select class = "form-select" aria - label = "Default select example" name = "id_tutor" required > <option selected disabled > Tutor: </option> <?php foreach ($list_doc as $row) : ?> <option value = "<?php echo $row['CF'] ?>"> <?php echo ($row['nome'] . " " . $row['cognome']) ?> </option> <?php endforeach ?> </select> </div>');
+              } else {
+                $("#html").remove();
+              }
+            });
+          });
+      </script>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
