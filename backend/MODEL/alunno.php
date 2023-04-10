@@ -6,5 +6,8 @@ class Alunno
     {
         $this->conn = $db;
     }
+    function getArchieveAlunni(){
+        $sql = "SELECT * from diario.alunno"; 
+        return $sql;
+    }
 }
-?>
