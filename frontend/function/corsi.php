@@ -121,3 +121,26 @@ function getCorsiByType($type)
         return -1;
     }
 }
+
+function getCorsoByNomeCorso($nome_corso)
+{
+    $url = 'http://localhost/DiarioProf/backend/API/corso/getCorsoByNomeCorso.php?nome_corso=' . $nome_corso;
+
+    $json_data = file_get_contents($url);
+    if ($json_data != -1) {
+        $decode_data = json_decode($json_data, $assoc = true);
+        $list_data = $decode_data;
+        $corsi_arr = array();
+        if (!empty($list_data)) {
+            foreach ($list_data as $corsi) {
+                $corsi_record = array(
+                    'id' => $corsi['id'],
+                );
+                array_push($corsi_arr, $corsi_record);
+            }
+            return $corsi_arr[0]['id'];
+        }
+    } else {
+        return -1;
+    }
+}

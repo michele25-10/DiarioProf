@@ -1,12 +1,12 @@
 <?php
 require("../../COMMON/connect.php");
-require("../../MODEL/incontro.php");
+require("../../MODEL/iscrizione.php");
 
 header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->id_corso) || empty($data->data_inizio)) {
+if (empty($data->id_corso) || empty($data->id_alunno)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();
@@ -15,9 +15,9 @@ if (empty($data->id_corso) || empty($data->data_inizio)) {
 $db = new Database();
 $conn = $db->connect();
 
-$incontro = new Incontro($conn);
+$iscrizione = new Iscrizione($conn);
 
-$query = $incontro->addIncontro($data->id_corso, $data->data_inizio);
+$query = $iscrizione->addAlunnoToCorso($data->id_corso, $data->id_alunno);
 $result = $conn->query($query);
 
 if ($result != false) {

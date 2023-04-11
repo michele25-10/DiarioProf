@@ -6,5 +6,10 @@ class Iscrizione
     {
         $this->conn = $db;
     }
+    function addAlunnoToCorso($id_corso, $id_alunno)
+    {
+        $sql = "INSERT INTO diario.iscrizione(id_alunno, id_corso)
+        VALUES ('" . $id_alunno . "', '" . $id_corso . "')";
+        return $sql;
+    }
 }
-?>

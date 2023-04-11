@@ -54,4 +54,11 @@ class Corso
         where c.tipologia = '" . $type . "';";
         return $sql;
     }
+    function getCorsoByNomeCorso($nome_corso)
+    {
+        $sql = "SELECT c.id
+        FROM diario.corso c
+        WHERE c.nome_corso = '" . $nome_corso . "';";
+        return $sql;
+    }
 }
