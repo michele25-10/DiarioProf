@@ -67,7 +67,7 @@ session_start();
           </div>
           <div class="col-md-2">
             <label for="inputCity" class="form-label">Materia:</label>
-            <input type="text" class="form-control" id="inputCity" name="materia">
+            <input type="text" class="form-control " id="inputCity" name="materia" required>
           </div>
           <div class="col-md-5">
             <label for="inputState" class="form-label">Data di inizio:</label>
@@ -137,8 +137,8 @@ session_start();
 
           </div>
         </div>
-        <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
-        <input type="submit" name="submit" class="submit btn btn-primary" value="Submit" />
+        <input type="button" name="previous" class="previous btn btn-secondary mb-5" value="Previous" />
+        <input type="submit" name="submit" class="submit btn btn-primary mb-5" value="Submit" />
       </fieldset>
     </form>
   </div>
@@ -175,6 +175,7 @@ session_start();
         });
       });
 
+    //Serve per creare il multistep form 
     $(document).ready(function() {
       var current = 1,
         current_step, next_step, steps;
@@ -202,6 +203,62 @@ session_start();
           .css("width", percent + "%")
           .html(percent + "%");
       }
+    });
+
+    //Validazione del form
+    $(document).ready(function() {
+
+      $("#regiration_form").validate({
+        rules: {
+          'tipologia': {
+            required: true,
+          },
+          'id_quadrimestre': {
+            required: true,
+          },
+          'id_docente': {
+            required: true,
+          },
+          'materia': {
+            required: true,
+          },
+          'data_inizio': {
+            required: true,
+          },
+          'data_fine': {
+            required: true,
+          },
+          'sede': {
+            required: true,
+          }
+        },
+        messages: {
+          'tipologia': {
+            required: "Il campo è obbligatorio",
+          },
+          'id_quadrimestre': {
+            required: "Il campo è obbligatorio",
+          },
+          'id_docente': {
+            required: "Il campo è obbligatorio",
+          },
+          'materia': {
+            required: "Il campo è obbligatorio",
+          },
+          'data_inizio': {
+            required: "Il campo è obbligatorio",
+          },
+          'data_fine': {
+            required: "Il campo è obbligatorio",
+          },
+          'sede': {
+            required: "Il campo è obbligatorio",
+          }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+      });
     });
   </script>
 
