@@ -206,7 +206,7 @@ session_start();
     });
 
     //Validazione del form
-    $(document).ready(function() {
+    $(document).ready(function(str) {
 
       $("#regiration_form").validate({
         rules: {
@@ -230,6 +230,48 @@ session_start();
           },
           'sede': {
             required: true,
+          },
+          'incontro1': {
+            required: true,
+          },
+          'incontro2': {
+            required: true,
+          },
+          'incontro3': {
+            required: true,
+          },
+          'incontro4': {
+            required: true,
+          },
+          'incontro5': {
+            required: true,
+          },
+          'alunno1': {
+            required: true,
+          },
+          'alunno2': {
+            required: true,
+          },
+          'alunno3': {
+            required: true,
+          },
+          'alunno4': {
+            required: true,
+          },
+          'alunno5': {
+            required: true,
+          },
+          'alunno6': {
+            required: true,
+          },
+          'alunno7': {
+            required: true,
+          },
+          'alunno8': {
+            required: true,
+          },
+          'alunno9': {
+            required: true,
           }
         },
         messages: {
@@ -252,6 +294,48 @@ session_start();
             required: "Il campo è obbligatorio",
           },
           'sede': {
+            required: "Il campo è obbligatorio",
+          },
+          'incontro1': {
+            required: "Il campo è obbligatorio",
+          },
+          'incontro2': {
+            required: "Il campo è obbligatorio",
+          },
+          'incontro3': {
+            required: "Il campo è obbligatorio",
+          },
+          'incontro4': {
+            required: "Il campo è obbligatorio",
+          },
+          'incontro5': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno1': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno2': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno3': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno4': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno5': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno6': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno7': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno8': {
+            required: "Il campo è obbligatorio",
+          },
+          'alunno9': {
             required: "Il campo è obbligatorio",
           }
         },
