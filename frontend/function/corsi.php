@@ -162,7 +162,7 @@ function getInfoCorsoDate($id)
                 );
                 array_push($corsi_arr, $corsi_record);
             }
-            return $corsi_arr[0]['id'];
+            return $corsi_arr;
         }
     } else {
         return -1;
@@ -187,7 +187,7 @@ function getInfoCorsoStudent($id)
                 );
                 array_push($corsi_arr, $corsi_record);
             }
-            return $corsi_arr[0]['id'];
+            return $corsi_arr;
         }
     } else {
         return -1;
