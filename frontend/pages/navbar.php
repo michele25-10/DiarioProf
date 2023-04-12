@@ -39,6 +39,9 @@
         <li class="nav-item">
           <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Lista incontri</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/getIncontriToday.php">Incontri di oggi</a>
+        </li>
       </ul>
     </div>
   </div>
