@@ -22,13 +22,14 @@ if (empty($_GET['id'])) {
     <?php
     include_once dirname(__FILE__) . '/../function/corsi.php';
     $id = $_GET['id'];
-    echo('<br>
-    <h2>Informazioni di '.($_GET['nome_corso']).'</h2>');
     $list_corsi = getInfoCorsoDate($id);
     $list_studenti = getInfoCorsoStudent($id);
     ?>
 
     <div class="container mt-5">
+    <?php echo('<br>
+    <h2>Informazioni di '.($_GET['nome_corso']).'</h2>');
+    ?>
         <?php if ($list_corsi != -1) : ?>
             <table id="example" class="display" style="width:100%">
                 <thead>
