@@ -17,10 +17,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/creaCorso.php">Crea Corso</a>
-        </li>
-        <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fw-bold text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Visualizza corsi
           </a>
@@ -35,6 +32,17 @@
             </li>
             <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getCorsiByTipologia.php?type=C">Visualizza corsi C</a></li>
           </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-bold text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Aggiungi
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/addDocente.php">Aggiungi docente</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/creaCorso.php">Crea Corso</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Lista incontri</a>

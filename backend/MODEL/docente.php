@@ -12,4 +12,9 @@ class Docente
         $sql = "select * from docente d;";
         return $sql;
     }
+    function addDocente($CF, $nome, $cognome,$telefono){
+        $sql ="INSERT INTO diario.docente(CF, nome, cognome, telefono)
+        VALUES ('" . $CF . "', '" . $nome . "', '" . $cognome . "', " . $telefono . ");";
+        return $sql;
+    }
 }
