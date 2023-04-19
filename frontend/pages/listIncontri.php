@@ -21,7 +21,7 @@
     $list_incontri = getArchieveIncontri();
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <?php if ($list_incontri != -1) : ?>
         <table id="example" class="display" style="width:100%">
             <thead>
@@ -44,9 +44,13 @@
                         <a href="#">
                             <button class="btn btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                    class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
                                     <path
-                                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                                    <path
+                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
                                 </svg>
                             </button>
                         </a>
@@ -71,7 +75,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                    <h2 id="nome_corso"></h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -82,7 +86,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Note:</label>
-                            <textarea class="form-control" id="note" name="note"></textarea>
+                            <textarea class="form-control" id="note" name="note" maxlength="100"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -102,6 +106,7 @@
     function onClick(id) {
         let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id;
         $.get(endpoint, function(data, status) {
+            console.log(data[0]);
             //Viene inserito negli input del form i contenuti degli incontri con quell'ID
             $('#data_inizio').val(data[0][
                 'data_inizio'
@@ -111,6 +116,9 @@
             ]);
             $('#id').val(data[0][
                 'id'
+            ]);
+            $('#nome_corso').text(data[0][
+                'id_corso'
             ]);
         });
     };
@@ -144,10 +152,9 @@
         $res = updateIncontro($data);
 
         if ($res == 1) {
-            session_destroy();
-            header("location: http://localhost/DiarioProf/frontend/pages/listIncontri.php");
-        } else {
-            echo ('<p>Errore</p>');
+            echo '<script>window . location . replace(
+                " http://localhost/DiarioProf/frontend/pages/listIncontri.php"
+            );</script>';
         }
     }
     ?>
