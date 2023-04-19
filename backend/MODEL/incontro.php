@@ -37,4 +37,11 @@ class Incontro
         WHERE i.id = '" . $id . "';";
         return $sql;
     }
+    function updateIncontro($id, $data_inizio, $note)
+    {
+        $sql = "UPDATE diario.incontro 
+                SET data_inizio = '" . $data_inizio . "', note = '" . $note . "'
+                WHERE id = '" . $id . "'; ";
+        return $sql;
+    }
 }

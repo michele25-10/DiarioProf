@@ -16,6 +16,7 @@
     <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <?php
+    session_start();
     include_once dirname(__FILE__) . '/../function/incontro.php';
     $list_incontri = getArchieveIncontri();
     ?>
@@ -74,21 +75,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post">
+                    <form method="post" id="form">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Data inizio:</label>
-                            <input type="datetime-local" class="form-control" id="recipient-name">
+                            <input type="datetime-local" class="form-control" id="data_inizio" name="data_inizio">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Note:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <textarea class="form-control" id="note" name="note"></textarea>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <button type="submit" class="btn btn-primary" id="id" name="id">Invia</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -99,22 +100,57 @@
     });
 
     function onClick(id) {
-
-        let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById?id=' + id;
-
-        /*$(".content a").each(function(index, element) {
-
-            $.ajax({
-                url: endpoint,
-                contentType: "application/json",
-                dataType: 'json',
-                success: function(result) {
-                    console.log(result);
-                }
-            })
-        });*/
+        let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id;
+        $.get(endpoint, function(data, status) {
+            //Viene inserito negli input del form i contenuti degli incontri con quell'ID
+            $('#data_inizio').val(data[0][
+                'data_inizio'
+            ]);
+            $('#note').val(data[0][
+                'note'
+            ]);
+            $('#id').val(data[0][
+                'id'
+            ]);
+        });
     };
+
+    $("#form").validate({
+        rules: {
+            'data_inizio': {
+                required: true,
+            },
+        },
+        messages: {
+            'data_inizio': {
+                required: "Il campo è obbligatorio",
+            },
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
     </script>
+
+    <?php
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data = array(
+            "id" => $_POST["id"],
+            "data_inizio" => $_POST['data_inizio'],
+            "note" => $_POST['note'],
+        );
+
+        $res = updateIncontro($data);
+
+        if ($res == 1) {
+            session_destroy();
+            header("location: http://localhost/DiarioProf/frontend/pages/listIncontri.php");
+        } else {
+            echo ('<p>Errore</p>');
+        }
+    }
+    ?>
 
     <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
