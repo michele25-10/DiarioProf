@@ -41,7 +41,8 @@
                     <td>
                         <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
-                        <a href="#">
+                        <a
+                            href="presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>">
                             <button class="btn btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
