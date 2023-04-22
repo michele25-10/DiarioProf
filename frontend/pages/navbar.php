@@ -38,7 +38,11 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/addDocente.php">Aggiungi docente</a></li>
-          </ul>
+          <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/creaCorso.php">Aggiungi Corso</a></li>
+            </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fw-bold text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,13 +54,11 @@
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getIncontriTomorrow.php">Incontri di domani</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Visualizza tutti gli incontri</a></li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/creaCorso.php">Crea Corso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Lista incontri</a>
         </li>
       </ul>
     </div>
