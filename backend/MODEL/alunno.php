@@ -13,7 +13,7 @@ class Alunno
     }
     function getStudentByCorsoName($nome_corso)
     {
-        $sql = "SELECT a.CF, a.nome, a.cognome
+        $sql = "SELECT a.CF, a.nome, a.cognome, c.tipologia
         from diario.alunno a
         inner join diario.iscrizione i on i.id_alunno = a.CF
         inner join diario.corso c on c.id = i.id_corso

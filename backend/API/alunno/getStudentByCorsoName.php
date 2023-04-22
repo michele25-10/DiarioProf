@@ -26,6 +26,7 @@ if (mysqli_num_rows($result) > 0) {
             'CF' => $CF,
             'nome' => $nome,
             'cognome' => $cognome,
+            'tipologia' => $tipologia,
         );
         array_push($als_arr, $al_arr);
     }

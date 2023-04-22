@@ -41,6 +41,7 @@ function getStudentByCorsoName($nome_corso)
                     'CF' => $al['CF'],
                     'nome' => $al['nome'],
                     'cognome' => $al['cognome'],
+                    'tipologia' => $al['tipologia'],
                 );
                 array_push($al_arr, $al_record);
             }
