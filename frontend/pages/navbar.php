@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="assets/style.css">
   <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
 </head>
-
 <nav class="navbar navbar-expand-lg" style='background-color: #D4020D'>
   <div class="container-fluid">
     <a class="navbar-brand fw-bold text-white" href="http://localhost/DiarioProf/frontend/">Calendario Corsi</a>
@@ -41,16 +40,26 @@
             <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/addDocente.php">Aggiungi docente</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-bold text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Visualizza incontri 
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getIncontriToday.php">Incontri di oggi</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getIncontriTomorrow.php">Incontri di domani</a></li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/creaCorso.php">Crea Corso</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Lista incontri</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/getIncontriToday.php">Incontri di oggi</a>
-        </li>
       </ul>
     </div>
   </div>
 </nav>
+        
