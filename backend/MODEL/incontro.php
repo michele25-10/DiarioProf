@@ -53,4 +53,15 @@ class Incontro
                 WHERE id = '" . $id . "'; ";
         return $sql;
     }
+
+    function countIncontro(){
+        $sql = " SELECT count(a.CF) as 'partecipanti', i2.data_inizio as 'data'
+       FROM alunno a 
+       inner join iscrizione i on a.CF = i.id_alunno 
+       inner join corso c on i.id_corso = c.id 
+       inner join incontro i2 on c.id = i2.id_corso 
+       where (i2.data_inizio between date(now()) and date(now())+ interval 16 day)
+       group by i2.data_inizio;";
+       return $sql;
+    }
 }

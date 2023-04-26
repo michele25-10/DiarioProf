@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Corsi di domani</title>
+    <title>Conta Studenti</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,56 +16,40 @@
 
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';
-    $list_incontri = getIncontriTomorrow();
+    $list_incontri = countIncontro();
     ?>
 
     <div class="container mt-5">
+    <?php echo('<br>
+    <h2>Studenti che partecipano ai corsi dei prossimi 15 giorni:</h2>
+    <br>');
+    ?>    
         <?php if ($list_incontri != -1) : ?>
         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>Nome corso</th>
-                    <th>Data Inizio</th>
-                    <th>Note</th>
-                    <th>View More</th>
+                    <th>Data</th>
+                    <th>Numero Studenti</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($list_incontri as $row) : ?>
                 <tr>
-                    <td><?php echo $row['id_corso'] ?></td>
-                    <td><?php echo $row['data_inizio'] ?></td>
-                    <td><?php echo $row['note'] ?></td>
-                    <td>
-                        <a href="#">
-                            <button class="btn btn-secondary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
-                                    <path
-                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                    <path
-                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                </svg>
-                            </button>
-                        </a>
-                    </td>
+                    <td><?php echo $row['data'] ?></td>
+                    <td><?php echo $row['partecipanti'] ?></td>
                 </tr>
                 <?php endforeach ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Nome corso</th>
-                    <th>Data Inizio</th>
-                    <th>Note</th>
-                    <th>View More</th>
+                    <th>Data</th>
+                    <th>Studenti</th>
                 </tr>
             </tfoot>
         </table>
         <?php endif ?>
         <?php if ($list_incontri == -1) : ?>
-        <h2 class="text-danger">Non ci sono incontri domani!</h2>
+        <h2 class="text-danger">Non ci sono incontri per i prossimi 15 giorni!</h2>
         <?php endif ?>
     </div>
 

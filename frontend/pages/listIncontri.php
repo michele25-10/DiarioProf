@@ -16,13 +16,15 @@
     <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <?php
-    session_start();
     include_once dirname(__FILE__) . '/../function/incontro.php';
     $list_incontri = getArchieveIncontri();
     ?>
 
     <div class="container mt-5 mb-5">
-        <?php if ($list_incontri != -1) : ?>
+    <?php echo('<br>
+    <h2>Studenti che partecipano ai corsi dei prossimi 15 giorni</h2>');
+    ?>    
+    <?php if ($list_incontri != -1) : ?>
         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>

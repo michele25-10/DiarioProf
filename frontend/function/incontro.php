@@ -152,4 +152,29 @@ function updateIncontro($data)
     } else {
         return -1;
     }
+    
+}
+
+function countIncontro()
+{
+    $url = 'http://localhost/DiarioProf/backend/API/incontro/countIncontro.php';
+
+    $json_data = file_get_contents($url);
+    if (intval($json_data) != -1) {
+        $decode_data = json_decode($json_data, $assoc = true);
+        $list_data = $decode_data;
+        $inc_arr = array();
+        if (!empty($list_data)) {
+            foreach ($list_data as $incontri) {
+                $incontri_record = array(
+                    'partecipanti' => $incontri['partecipanti'],
+                    'data' => $incontri['data'],
+                );
+                array_push($inc_arr, $incontri_record);
+            }
+            return $inc_arr;
+        }
+    } else {
+        return -1;
+    }
 }
