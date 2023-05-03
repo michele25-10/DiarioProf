@@ -64,4 +64,15 @@ class Incontro
        group by i2.data_inizio;";
        return $sql;
     }
+
+    function getStudentsIncontro($date,$ora){
+        $sql = " SELECT a.nome, a.cognome 
+       FROM alunno a 
+       inner join iscrizione i on a.CF = i.id_alunno 
+       inner join corso c on i.id_corso = c.id 
+       inner join incontro i2 on c.id = i2.id_corso 
+       where (i2.data_inizio ='". $date."-". $ora."');";
+              var_dump($sql);
+       return $sql;
+    }
 }
