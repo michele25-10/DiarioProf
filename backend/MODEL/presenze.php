@@ -31,5 +31,15 @@ class Presenze
         from incontro i 
         where i.id = '" . $id_incontro . "'
         );";
+        return $sql;
+    }
+    function getPresenzeByIncontro($id_incontro)
+    {
+        $sql = " SELECT a.nome, a.cognome, if(p.alunno = 0, 'Presente', 'Assente') as 'status'
+        FROM  diario.presenze  p
+        Inner JOIN diario.alunno a on p.id_alunno = a.id
+        WHERE p.id_incontro = '" . $id_incontro . "';
+        ";
+        return $sql;
     }
 }
