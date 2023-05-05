@@ -42,4 +42,9 @@ class Presenze
         ";
         return $sql;
     }
+    function checkRegistro($id_incontro)
+    {
+        $sql = " SELECT * FROM diario.presenze WHERE id_incontro = '" . $id_incontro . "';";
+        return $sql;
+    }
 }
