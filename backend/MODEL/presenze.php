@@ -35,11 +35,10 @@ class Presenze
     }
     function getPresenzeByIncontro($id_incontro)
     {
-        $sql = " SELECT a.nome, a.cognome, if(p.alunno = 0, 'Presente', 'Assente') as 'status'
+        $sql = " SELECT p.id, a.nome, a.cognome, if(p.status = 0, 'Presente', 'Assente') as 'status'
         FROM  diario.presenze  p
-        Inner JOIN diario.alunno a on p.id_alunno = a.id
-        WHERE p.id_incontro = '" . $id_incontro . "';
-        ";
+        Inner JOIN diario.alunno a on p.id_alunno = a.CF
+        WHERE p.id_incontro = '" . $id_incontro . "';";
         return $sql;
     }
     function checkRegistro($id_incontro)

@@ -17,7 +17,7 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Corsi per tipologia</title>
+    <title>Edit presenze</title>
     <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -28,50 +28,43 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
     <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <?php
-    include_once dirname(__FILE__) . '/../function/incontro.php';
-    $list_incontri = getArchieveIncontri();
+    include_once dirname(__FILE__) . '/../function/presenze.php';
+    $list = getPresenzeByIncontro($_GET['id_incontro']);
     ?>
 
     <div class="container mt-5 mb-5">
-        <?php if ($list_incontri != -1) : ?>
-            <table id="example" class="display" style="width:100%">
+        <?php if ($list != -1) : ?>
+            <table id="example" class="table table-hover" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Nome corso</th>
-                        <th>Data Inizio</th>
-                        <th>Note</th>
-                        <th>View More</th>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Stato</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($list_incontri as $row) : ?>
+                    <?php foreach ($list as $row) : ?>
                         <tr>
-                            <td><?php echo $row['id_corso'] ?></td>
-                            <td><?php echo $row['data_inizio'] ?></td>
-                            <td><?php echo $row['note'] ?></td>
+                            <td><i class="bi bi-person-badge-fill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
+                                    </svg>
+                                </i></td>
+                            <td><?php echo $row['nome'] ?></td>
+                            <td><?php echo $row['cognome'] ?></td>
+                            <td><?php echo $row['status'] ?></td>
                             <td>
-                                <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
-                                <a href="presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>">
-                                    <button class="btn btn-secondary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
-                                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                        </svg>
-                                    </button>
-                                </a>
+                                <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php
+                                                                                                                                                        $id = strval($row['id']);
+                                                                                                                                                        $nome = strval($row['nome']);
+                                                                                                                                                        $cognome = strval($row['cognome']);
+                                                                                                                                                        echo ($id . ', ' . $nome . ', ' . $cognome); ?>)">Edit</button>
                             </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Nome corso</th>
-                        <th>Data Inizio</th>
-                        <th>Note</th>
-                        <th>View More</th>
-                    </tr>
-                </tfoot>
             </table>
         <?php endif ?>
     </div>
@@ -80,15 +73,11 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 id="nome_corso"></h2>
+                    <h2 id="alunno"></h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="form">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Data inizio:</label>
-                            <input type="datetime-local" class="form-control" id="data_inizio" name="data_inizio">
-                        </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Note:</label>
                             <textarea class="form-control" id="note" name="note" maxlength="100"></textarea>
@@ -104,45 +93,11 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable({});
-        });
-
-        function onClick(id) {
-            let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id;
-            $.get(endpoint, function(data, status) {
-                console.log(data[0]);
-                //Viene inserito negli input del form i contenuti degli incontri con quell'ID
-                $('#data_inizio').val(data[0][
-                    'data_inizio'
-                ]);
-                $('#note').val(data[0][
-                    'note'
-                ]);
-                $('#id').val(data[0][
-                    'id'
-                ]);
-                $('#nome_corso').text(data[0][
-                    'id_corso'
-                ]);
-            });
-        };
-
-        $("#form").validate({
-            rules: {
-                'data_inizio': {
-                    required: true,
-                },
-            },
-            messages: {
-                'data_inizio': {
-                    required: "Il campo è obbligatorio",
-                },
-            },
-            submitHandler: function(form) {
-                form.submit();
-            }
-        });
+        function onClick(id, nome, cognome) {
+            console.log();
+            //Viene inserito negli input del form i contenuti degli incontri con quell'ID
+            $('#alunno').text(nome + " " + cognome);
+        }
     </script>
 
     <?php

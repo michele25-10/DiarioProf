@@ -23,6 +23,7 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = $result->fetch_assoc()) {
         extract($row);
         $inc_arr = array(
+            'id' => $id,
             'nome' => $nome,
             'cognome' => $cognome,
             'status' => $status,
