@@ -1,3 +1,16 @@
+<?php
+include_once dirname(__FILE__) . '/../function/presenze.php';
+if (empty($_GET['id_incontro'])) {
+    header('location: ../index.php');
+}
+if (empty($_GET['nome_corso'])) {
+    header('location: ../index.php');
+}
+if (checkRegistro($_GET['id_incontro']) == "false") {
+    header('location: listIncontri.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 

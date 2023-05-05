@@ -34,3 +34,14 @@ function addPresenze($data)
         return -1;
     }
 }
+
+function checkRegistro($id_incontro)
+{
+    $url = 'http://localhost/DiarioProf/backend/API/presenze/checkRegistro.php?id_incontro=' . $id_incontro;
+
+    $json_data = file_get_contents($url);
+
+    $jsond_decode = json_decode($json_data);
+
+    return $jsond_decode;
+}
