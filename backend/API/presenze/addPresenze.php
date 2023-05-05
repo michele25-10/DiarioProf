@@ -27,6 +27,20 @@ foreach ($data as $row) {
             echo json_encode(["message" => false]);
             die();
         }
+        if ($row->status == 0) {
+            if ($result == false) {
+                http_response_code(401);
+                echo json_encode(["message" => false]);
+                die();
+            }
+        }
+        if ($row->status == 1) {
+            if ($result == false) {
+                http_response_code(401);
+                echo json_encode(["message" => false]);
+                die();
+            }
+        }
     } else {
         $query = $pres->addPresenze($row->id_incontro, $row->id_alunno, $row->status);
         $result = $conn->query($query);

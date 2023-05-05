@@ -16,4 +16,20 @@ class Presenze
         $sql = "UPDATE diario.presenze SET id_incontro = '" . $id_incontro . "', id_alunno = '" . $id_alunno . "', status = '" . $status . "' WHERE id_incontro = '" . $id_incontro . "' AND id_alunno = '" . $id_alunno . "';";
         return $sql;
     }
+    function addPresenza($id_alunno, $id_incontro)
+    {
+        $sql = "update diario.iscrizione set numero_presenze = numero_presenze + 1 where id_alunno = '" . $id_alunno . "' and id_corso = (select i.id_corso 
+        from incontro i 
+        where i.id = '" . $id_incontro . "'
+        ) ;";
+        return $sql;
+    }
+    function removePresenza($id_alunno, $id_incontro)
+    {
+        $sql = "update iscrizione set numero_presenze = numero_presenze - 1
+        where id_alunno = '" . $id_alunno . "' and numero_presenze != '0' and id_corso = (select i.id_corso 
+        from incontro i 
+        where i.id = '" . $id_incontro . "'
+        );";
+    }
 }
