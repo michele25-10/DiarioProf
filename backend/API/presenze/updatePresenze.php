@@ -10,14 +10,14 @@ $db = new Database();
 $conn = $db->connect();
 
 $pres = new Presenze($conn);
-foreach ($data as $row) {
-    $query = $pres->addPresenze($row->id_incontro, $row->id_alunno, $row->status);
-    $result = $conn->query($query);
-    if ($result == false) {
-        http_response_code(401);
-        echo json_encode(["message" => false]);
-        die();
-    }
+
+$query = $pres->updatePresenze($row->id_incontro, $row->id_alunno, $row->status);
+$result = $conn->query($query);
+
+if ($result == false) {
+    http_response_code(401);
+    echo json_encode(["message" => false]);
+    die();
 }
 if ($row->status == 0) {
     $query = $pres->incrementPresenza($row->id_alunno, $row->id_incontro);
@@ -38,9 +38,4 @@ if ($row->status == 1) {
         die();
     }
 }
-if ($result != false) {
-    http_response_code(200);
-    echo json_encode(["message" => true]);
-}
-
 die();

@@ -34,3 +34,40 @@ function addPresenze($data)
         return -1;
     }
 }
+
+function checkRegistro($id_incontro)
+{
+    $url = 'http://localhost/DiarioProf/backend/API/presenze/checkRegistro.php?id_incontro=' . $id_incontro;
+
+    $json_data = file_get_contents($url);
+
+    $jsond_decode = json_decode($json_data);
+
+    return $jsond_decode;
+}
+
+function getPresenzeByIncontro($incontro)
+{
+    $url = 'http://localhost/DiarioProf/backend/API/presenze/getPresenzeByIncontro.php?id_incontro=' . $incontro;
+
+    $json_data = file_get_contents($url);
+    if ($json_data != -1) {
+        $decode_data = json_decode($json_data, $assoc = true);
+        $pres_data = $decode_data;
+        $pres_arr = array();
+        if (!empty($pres_data)) {
+            foreach ($pres_data as $pres) {
+                $pres_record = array(
+                    'id' => $pres['id'],
+                    'nome' => $pres['nome'],
+                    'cognome' => $pres['cognome'],
+                    'status' => $pres['status'],
+                );
+                array_push($pres_arr, $pres_record);
+            }
+            return $pres_arr;
+        }
+    } else {
+        return -1;
+    }
+}
