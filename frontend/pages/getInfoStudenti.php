@@ -16,58 +16,48 @@
 
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';
-    $list_incontri = countIncontro();
     ?>
 
-    <div class="container mt-5">
-        <?php echo ('<br>
-    <h2>Studenti che partecipano ai corsi dei prossimi 15 giorni:</h2>
-    <br>');
+    <div class="container mt-5"
         ?>
-        <?php if ($list_incontri != -1): ?>
+        <?php
+         $date = $_GET['data'];
+         $newDate = str_replace(" ", "%20", $date);
+         $list_partecipanti = getStudentsIncontro($newDate);
+        $nome = $_GET['nome_corso'];
+         echo ('<br>
+        <h2>Studenti che partecipano al corso '. $nome.' in data '.$date.':</h2>
+        <br>');
+        if ($list_partecipanti != -1): ?>
             <table id="example" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Data</th>
-                        <th>Numero Studenti</th>
-                        <th> Info </th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($list_incontri as $row): ?>
+                    <?php foreach ($list_partecipanti as $row): ?>
                         <tr>
                             <td>
-                                <?php echo $row['data'] ?>
+                                <?php echo $row['nome'] ?>
                             </td>
                             <td>
-                                <?php echo $row['partecipanti'] ?>
-                            </td>
-                            <td>
-                            <a href="getInfoStudenti.php?data=<?php echo $row['data'] ?>&nome_corso=<?php echo $row['nome_corso']?>">
-                                    <button class="btn btn-secondary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                                        </svg>
-                                    </button>
-                                </a>
+                                <?php echo $row['cognome'] ?>
                             </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Data</th>
-                        <th>Studenti</th>
-                        <th>Info</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
                     </tr>
                 </tfoot>
             </table>
         <?php endif ?>
-        <?php if ($list_incontri == -1): ?>
-            <h2 class="text-danger">Non ci sono incontri per i prossimi 15 giorni!</h2>
-        <?php endif ?>
     </div>
-
+    
         <script>
             function filterGlobal() {
                 $('#example')
@@ -107,5 +97,4 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
             </script>
 </body>
-
 </html>

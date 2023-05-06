@@ -19,6 +19,7 @@ if (mysqli_num_rows($result) > 0) {
         $inc_arr = array(
             'partecipanti' => $partecipanti,
             'data' => $data,
+            'nome_corso' =>$nome_corso,
         );
         array_push($incs_arr, $inc_arr);
     }

@@ -55,7 +55,7 @@ class Incontro
     }
 
     function countIncontro(){
-        $sql = " SELECT count(a.CF) as 'partecipanti', i2.data_inizio as 'data'
+        $sql = " SELECT count(a.CF) as 'partecipanti', i2.data_inizio as 'data', c.nome_corso
        FROM alunno a 
        inner join iscrizione i on a.CF = i.id_alunno 
        inner join corso c on i.id_corso = c.id 
@@ -72,7 +72,6 @@ class Incontro
        inner join corso c on i.id_corso = c.id 
        inner join incontro i2 on c.id = i2.id_corso 
        where (i2.data_inizio ='". $date."-". $ora."');";
-              var_dump($sql);
        return $sql;
     }
 }

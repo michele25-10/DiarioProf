@@ -169,6 +169,7 @@ function countIncontro()
                 $incontri_record = array(
                     'partecipanti' => $incontri['partecipanti'],
                     'data' => $incontri['data'],
+                    'nome_corso' => $incontri['nome_corso'],
                 );
                 array_push($inc_arr, $incontri_record);
             }
