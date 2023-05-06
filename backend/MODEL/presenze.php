@@ -11,9 +11,9 @@ class Presenze
         $sql = "INSERT INTO diario.presenze(id_incontro,id_alunno,status) VALUES('" . $id_incontro . "', '" . $id_alunno . "', '" . $status . "')";
         return $sql;
     }
-    function updatePresenze($id_incontro, $id_alunno, $status)
+    function updatePresenze($id, $status)
     {
-        $sql = "UPDATE diario.presenze SET id_incontro = '" . $id_incontro . "', id_alunno = '" . $id_alunno . "', status = '" . $status . "' WHERE id_incontro = '" . $id_incontro . "' AND id_alunno = '" . $id_alunno . "';";
+        $sql = "UPDATE diario.presenze SET status = '" . $status . "' WHERE id = '" . $id . "';";
         return $sql;
     }
     function incrementPresenza($id_alunno, $id_incontro)
@@ -44,6 +44,14 @@ class Presenze
     function checkRegistro($id_incontro)
     {
         $sql = " SELECT * FROM diario.presenze WHERE id_incontro = '" . $id_incontro . "';";
+        return $sql;
+    }
+    function getPresenzeById($id)
+    {
+        $sql = "SELECT a.nome, a.cognome, a.CF
+        FROM diario.presenze p
+        INNER JOIN diario.alunno a ON p.id_alunno = a.CF
+        where p.id = " . $id . ";";
         return $sql;
     }
 }
