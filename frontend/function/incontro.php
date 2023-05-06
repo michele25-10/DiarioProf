@@ -82,6 +82,7 @@ function getIncontriToday()
                     'id_corso' => $incontri['id_corso'],
                     'data_inizio' => $incontri['data_inizio'],
                     'note' => $incontri['note'],
+                    'nomeBreve' => $incontri['nomeBreve'],
                 );
                 array_push($inc_arr, $incontri_record);
             }
@@ -108,6 +109,7 @@ function getIncontriTomorrow()
                     'id_corso' => $incontri['id_corso'],
                     'data_inizio' => $incontri['data_inizio'],
                     'note' => $incontri['note'],
+                    'nomeBreve' => $incontri['nomeBreve'],
                 );
                 array_push($inc_arr, $incontri_record);
             }

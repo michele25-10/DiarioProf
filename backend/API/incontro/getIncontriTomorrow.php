@@ -21,6 +21,7 @@ if (mysqli_num_rows($result) > 0) {
             'id_corso' => $id_corso,
             'data_inizio' => $data_inizio,
             'note' => $note,
+            'nomeBreve' => $nomeBreve,
         );
         array_push($incs_arr, $inc_arr);
     }

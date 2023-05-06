@@ -26,6 +26,7 @@
                         <th>Nome corso</th>
                         <th>Data Inizio</th>
                         <th>Note</th>
+                        <th>Aula</th>
                         <th>View More</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                             <td><?php echo $row['id_corso'] ?></td>
                             <td><?php echo $row['data_inizio'] ?></td>
                             <td><?php echo $row['note'] ?></td>
+                            <td><?php echo $row['nomeBreve'] ?></td>
                             <td>
                                 <a href="presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>">
                                     <button class="btn btn-secondary">
@@ -54,6 +56,7 @@
                         <th>Nome corso</th>
                         <th>Data Inizio</th>
                         <th>Note</th>
+                        <th>Aula</th>
                         <th>View More</th>
                     </tr>
                 </tfoot>
