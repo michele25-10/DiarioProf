@@ -1,4 +1,5 @@
 create database diario;
+use diario
 
 create table diario.corso(
 id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
@@ -17,7 +18,8 @@ create table diario.incontro(
 id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
 id_corso			INT UNSIGNED NOT null,
 data_inizio			datetime not null,
-note				varchar(100) null
+note				varchar(100) null,
+id_aula int unsigned not null
 );
 
 create table diario.quadrimestre(
@@ -55,6 +57,12 @@ cognome				varchar(30) not null,
 telefono			varchar(10) not null
 );
 
+create table diario.aula(
+id		INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
+nome 	varchar(100) not null,
+nomeBreve	varchar(35) not null
+);
+
 alter table diario.corso add constraint fk_corso_quadrimestre foreign key (id_quadrimestre) references diario.quadrimestre(id);
 alter table diario.corso add constraint fk_corso_docente foreign key (id_docente) references diario.docente(CF);
 
@@ -66,3 +74,6 @@ alter table diario.iscrizione add constraint fk_iscrizione_alunno foreign key (i
 alter table diario.presenze add constraint fk_presenze_incontro foreign key (id_incontro) references diario.incontro(id);
 alter table diario.presenze add constraint fk_presenze_alunni foreign key (id_alunno) references diario.alunno(CF);
 
+
+
+alter table diario.incontro add constraint fk_incontro_aula foreign key (id_aula) references diario.aula(id);
