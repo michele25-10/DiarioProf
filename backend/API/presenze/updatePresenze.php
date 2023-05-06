@@ -11,7 +11,7 @@ $conn = $db->connect();
 
 $pres = new Presenze($conn);
 
-$query = $pres->updatePresenze($row->id_incontro, $row->id_alunno, $row->status);
+$query = $pres->updatePresenze($row->id, $row->status);
 $result = $conn->query($query);
 
 if ($result == false) {
