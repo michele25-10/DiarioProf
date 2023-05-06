@@ -24,6 +24,8 @@ if (mysqli_num_rows($result) > 0) {
         $inc_arr = array(
             'nome' => $nome,
             'cognome' => $cognome,
+            'CF' => $CF,
+            'id_incontro' => $id_incontro,
         );
     }
     http_response_code(200);

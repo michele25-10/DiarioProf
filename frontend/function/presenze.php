@@ -103,7 +103,8 @@ function updatePresenze($data)
     if ($response->message == false) //response == true vuol dire sessione senza errori
     {
         return -1;
-    } else {
+    }
+    if ($response->message == true) {
         return 1;
     }
 }

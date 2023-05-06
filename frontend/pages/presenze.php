@@ -84,8 +84,8 @@ if (checkRegistro($_GET['id_incontro']) == "true") {
             $value = explode(" ", $_POST["alunno" . $indice]);
             $array = array(
                 "id_incontro" => $id_incontro,
-                "id_alunno" => $value[0],
                 "status" => $value[1],
+                "id_alunno" => $value[0],
             );
             array_push($data, $array);
         }

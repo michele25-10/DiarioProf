@@ -11,7 +11,7 @@ $conn = $db->connect();
 
 $pres = new Presenze($conn);
 
-$query = $pres->updatePresenze($row->id, $row->status);
+$query = $pres->updatePresenze($data->id, $data->status);
 $result = $conn->query($query);
 
 if ($result == false) {
@@ -19,22 +19,31 @@ if ($result == false) {
     echo json_encode(["message" => false]);
     die();
 }
-if ($row->status == 0) {
-    $query = $pres->incrementPresenza($row->id_alunno, $row->id_incontro);
+if ($data->status == 0) {
+    $query = $pres->incrementPresenza($data->id_alunno, $data->id_incontro);
     $res = $conn->query($query);
     if ($res == false) {
         http_response_code(401);
         echo json_encode(["message" => false]);
         die();
     }
+    if ($res == true) {
+        http_response_code(201);
+        echo json_encode(["message" => true]);
+        die();
+    }
 }
-if ($row->status == 1) {
+if ($data->status == 1) {
+    $query = $pres->decrementPresenza($data->id_alunno, $data->id_incontro);
+    $res = $conn->query($query);
     if ($result == false) {
-        $query = $pres->decrementPresenza($row->id_alunno, $row->id_incontro);
-        $res = $conn->query($query);
-
         http_response_code(401);
         echo json_encode(["message" => false]);
+        die();
+    }
+    if ($res == true) {
+        http_response_code(201);
+        echo json_encode(["message" => true]);
         die();
     }
 }

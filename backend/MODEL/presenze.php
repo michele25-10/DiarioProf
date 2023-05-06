@@ -20,8 +20,7 @@ class Presenze
     {
         $sql = "update diario.iscrizione set numero_presenze = numero_presenze + 1 where id_alunno = '" . $id_alunno . "' and id_corso = (select i.id_corso 
         from incontro i 
-        where i.id = '" . $id_incontro . "'
-        ) ;";
+        where i.id = '" . $id_incontro . "') ;";
         return $sql;
     }
     function decrementPresenza($id_alunno, $id_incontro)
@@ -48,7 +47,7 @@ class Presenze
     }
     function getPresenzeById($id)
     {
-        $sql = "SELECT a.nome, a.cognome, a.CF
+        $sql = "SELECT a.nome, a.cognome, a.CF, p.id_incontro
         FROM diario.presenze p
         INNER JOIN diario.alunno a ON p.id_alunno = a.CF
         where p.id = " . $id . ";";
