@@ -48,7 +48,13 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
                     <?php foreach ($list as $row) : ?>
                         <tr>
                             <td><i class="bi bi-person-badge-fill">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" style="color: <?php
+                                                                                                                                        if ($row['status'] == "Presente") {
+                                                                                                                                            echo 'green';
+                                                                                                                                        } else {
+                                                                                                                                            echo 'red';
+                                                                                                                                        }
+                                                                                                                                        ?>" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
                                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
                                     </svg>
                                 </i></td>
@@ -106,23 +112,27 @@ if (checkRegistro($_GET['id_incontro']) == "false") {
 
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $value = explode(" ", $_POST["alunno"]);
-        $data = array(
-            "id" => $value[0],
-            "id_alunno" => $value[2],
-            "status" => $value[1],
-            "id_incontro" => $value[3],
-        );
+        if (!empty($_POST["alunno"])) {
+            $value = explode(" ", $_POST["alunno"]);
+            $data = array(
+                "id" => $value[0],
+                "id_alunno" => $value[2],
+                "status" => $value[1],
+                "id_incontro" => $value[3],
+            );
 
-        var_dump($data);
-        $res = updatePresenze($data);
+            $res = updatePresenze($data);
 
-        var_dump($res);
-        if ($res == 1) {
-            $_SERVER['REQUEST_METHOD'] = "GET"; //modifico il valore per non fare sempre ricaricare la pagina
-            echo '<script>location.reload();</script>';
+            if ($res == 1) {
+                unset($_POST['alunno']);
+                $url = "http://localhost/DiarioProf/frontend/pages/editPresenze.php?id_incontro=" . $_GET['id_incontro'] . "&nome_corso=" . $_GET['nome_corso'];
+                echo '<script>window . location . replace(
+                        ' . $url . '
+                    );</script>';
+            }
         }
     }
+
     ?>
 
     <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
