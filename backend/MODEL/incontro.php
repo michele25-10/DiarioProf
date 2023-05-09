@@ -6,10 +6,10 @@ class Incontro
     {
         $this->conn = $db;
     }
-    function addIncontro($id_corso, $data_inizio)
+    function addIncontro($id_corso, $data_inizio, $id_aula)
     {
-        $sql = "INSERT INTO diario.incontro(id_corso, data_inizio)
-        VALUES ('" . $id_corso . "', '" . $data_inizio . "'); ";
+        $sql = "INSERT INTO diario.incontro(id_corso, data_inizio, id_aula)
+        VALUES ('" . $id_corso . "', '" . $data_inizio . "', '" . $id_aula . "'); ";
         return $sql;
     }
     function getArchieveIncontri()

@@ -25,13 +25,14 @@ function getArchieveIncontri()
     }
 }
 
-function addIncontro($id_corso, $incontro)
+function addIncontro($id_corso, $incontro, $id_aula)
 {
     $url = 'http://localhost/DiarioProf/backend/API/incontro/addIncontro.php';
 
     $data = array(
         "id_corso" => $id_corso,
         "data_inizio" => $incontro,
+        "id_aula" => $id_aula,
     );
 
     $curl = curl_init($url); //inizializza una nuova sessione di cUrl
@@ -154,7 +155,6 @@ function updateIncontro($data)
     } else {
         return -1;
     }
-    
 }
 
 function countIncontro()
