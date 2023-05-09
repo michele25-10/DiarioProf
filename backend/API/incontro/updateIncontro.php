@@ -6,7 +6,7 @@ header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->id) || empty($data->data_inizio) || empty($data->note)) {
+if (empty($data->id) || empty($data->data_inizio) || empty($data->id_aula)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();
@@ -17,7 +17,7 @@ $conn = $db->connect();
 
 $incontro = new Incontro($conn);
 
-$query = $incontro->updateIncontro($data->id, $data->data_inizio, $data->note);
+$query = $incontro->updateIncontro($data->id, $data->data_inizio, $data->note, $data->id_aula);
 $result = $conn->query($query);
 
 if ($result != false) {

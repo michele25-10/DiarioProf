@@ -37,7 +37,7 @@
                     <td><?php echo $row['id_corso'] ?></td>
                     <td><?php echo $row['data_inizio'] ?></td>
                     <td><?php echo $row['note'] ?></td>
-                    <td><?php echo $row['nomeBreve'] ?></td>
+                    <td><?php echo $row['nome'] ?></td>
                     <td>
                         <a
                             href="presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>">

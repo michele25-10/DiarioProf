@@ -14,15 +14,16 @@ class Incontro
     }
     function getArchieveIncontri()
     {
-        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note 
+        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nome
         FROM diario.incontro i
         INNER JOIN diario.corso c ON c.id = i.id_corso
+        INNER JOIN diario.aula a ON a.id = i.id_aula
         order by i.data_inizio desc;";
         return $sql;
     }
     function getIncontriToday()
     {
-        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nomeBreve
+        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nome
         FROM diario.incontro i
         INNER JOIN diario.corso c ON c.id = i.id_corso
         INNER JOIN diario.aula a on i.id_aula = a.id
@@ -32,7 +33,7 @@ class Incontro
     }
     function getIncontriTomorrow()
     {
-        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nomeBreve
+        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nome
         FROM diario.incontro i
         INNER JOIN diario.corso c ON c.id = i.id_corso
         INNER JOIN diario.aula a on i.id_aula = a.id
@@ -42,17 +43,16 @@ class Incontro
     }
     function getIncontriById($id)
     {
-        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note 
+        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, i.id_aula, a.nome
         FROM diario.incontro i
         INNER JOIN diario.corso c ON c.id = i.id_corso
+        INNER JOIN diario.aula a ON i.id_aula = a.id
         WHERE i.id = '" . $id . "';";
         return $sql;
     }
-    function updateIncontro($id, $data_inizio, $note)
+    function updateIncontro($id, $data_inizio, $note, $id_aula)
     {
-        $sql = "UPDATE diario.incontro 
-                SET data_inizio = '" . $data_inizio . "', note = '" . $note . "'
-                WHERE id = '" . $id . "'; ";
+        $sql = "UPDATE diario.incontro SET data_inizio = '" . $data_inizio . "', note = '" . $note . "', id_aula = '" . $id_aula . "' WHERE id = '" . $id . "'; ";
         return $sql;
     }
 

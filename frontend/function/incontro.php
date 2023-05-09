@@ -15,6 +15,7 @@ function getArchieveIncontri()
                     'id_corso' => $incontri['id_corso'],
                     'data_inizio' => $incontri['data_inizio'],
                     'note' => $incontri['note'],
+                    'aula' => $incontri['aula'],
                 );
                 array_push($inc_arr, $incontri_record);
             }
@@ -83,7 +84,7 @@ function getIncontriToday()
                     'id_corso' => $incontri['id_corso'],
                     'data_inizio' => $incontri['data_inizio'],
                     'note' => $incontri['note'],
-                    'nomeBreve' => $incontri['nomeBreve'],
+                    'nome' => $incontri['nome'],
                 );
                 array_push($inc_arr, $incontri_record);
             }
@@ -110,7 +111,7 @@ function getIncontriTomorrow()
                     'id_corso' => $incontri['id_corso'],
                     'data_inizio' => $incontri['data_inizio'],
                     'note' => $incontri['note'],
-                    'nomeBreve' => $incontri['nomeBreve'],
+                    'nome' => $incontri['nome'],
                 );
                 array_push($inc_arr, $incontri_record);
             }

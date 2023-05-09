@@ -17,7 +17,9 @@
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';
     include_once dirname(__FILE__) . '/../function/presenze.php';
+    include_once dirname(__FILE__) . '\..\function\aula.php';
 
+    $list_aule = getArchieveAule();
     $list_incontri = getArchieveIncontri();
     ?>
 
@@ -29,6 +31,7 @@
                         <th>Nome corso</th>
                         <th>Data Inizio</th>
                         <th>Note</th>
+                        <th>Aula</th>
                         <th>View More</th>
                     </tr>
                 </thead>
@@ -38,6 +41,7 @@
                             <td><?php echo $row['id_corso'] ?></td>
                             <td><?php echo $row['data_inizio'] ?></td>
                             <td><?php echo $row['note'] ?></td>
+                            <td><?php echo $row['aula'] ?> </td>
                             <td>
                                 <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
                                 <button class="btn btn-secondary me-3" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>';">
@@ -80,6 +84,16 @@
                             <label for="message-text" class="col-form-label">Note:</label>
                             <textarea class="form-control" id="note" name="note" maxlength="100"></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Aula:</label>
+                            <select class="form-select" aria-label="Default select example" id="aula" name="aula" required>
+                                <option selected disabled>Aula:</option>
+                                <?php foreach ($list_aule as $row) : ?>
+                                    <option value="<?php echo $row['id'] ?>">
+                                        <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -112,6 +126,7 @@
                 $('#nome_corso').text(data[0][
                     'id_corso'
                 ]);
+                $('#aula option[value=' + data[0]['id_aula'] + ']').prop('selected', true);
             });
         };
 
@@ -139,8 +154,9 @@
             "id" => $_POST["id"],
             "data_inizio" => $_POST['data_inizio'],
             "note" => $_POST['note'],
+            "id_aula" => $_POST['aula'],
         );
-
+        var_dump($data);
         $res = updateIncontro($data);
 
         if ($res == 1) {
