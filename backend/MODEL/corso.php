@@ -62,15 +62,18 @@ class Corso
         return $sql;
     }
 
-    function getInfoCorsoDate($id){
-        $sql = "SELECT i.data_inizio, i.note
+    function getInfoCorsoDate($id)
+    {
+        $sql = "SELECT i.data_inizio, i.note, a.nome
         FROM  diario.corso c
         inner join diario.incontro i on c.id = i.id_corso
+        inner join diario.aula a on a.id = i.id_aula
         WHERE c.id = '" . $id . "';";
         return $sql;
     }
 
-    function getInfoCorsoStudent($id){
+    function getInfoCorsoStudent($id)
+    {
         $sql = " SELECT a.nome, a.cognome, a.CF
         FROM diario.corso c
         inner join diario.iscrizione i2 on c.id = i2.id_corso
@@ -79,4 +82,3 @@ class Corso
         return $sql;
     }
 }
-

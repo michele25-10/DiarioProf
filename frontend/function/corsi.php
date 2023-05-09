@@ -159,6 +159,7 @@ function getInfoCorsoDate($id)
                 $corsi_record = array(
                     'data_inizio' => $corsi['data_inizio'],
                     'note' => $corsi['note'],
+                    'aula' => $corsi['aula'],
                 );
                 array_push($corsi_arr, $corsi_record);
             }
