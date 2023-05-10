@@ -12,4 +12,12 @@ class Iscrizione
         VALUES ('" . $id_alunno . "', '" . $id_corso . "')";
         return $sql;
     }
+    function getNumeroPresenze($id_corso)
+    {
+        $sql = "select a.nome, a.cognome, i.numero_presenze 
+        from diario.iscrizione i
+        inner join diario.alunno a on a.CF = i.id_alunno 
+        where id_corso = '" . $id_corso . "'";
+        return $sql;
+    }
 }
