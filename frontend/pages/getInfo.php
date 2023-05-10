@@ -25,12 +25,13 @@ if (empty($_GET['nome_corso'])) {
 
     <?php
     include_once dirname(__FILE__) . '/../function/corsi.php';
+
     $id = $_GET['id'];
     $list_corsi = getInfoCorsoDate($id);
     $list_studenti = getInfoCorsoStudent($id);
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-3">
         <?php echo ('<br>
     <h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
         ?>
@@ -79,6 +80,56 @@ if (empty($_GET['nome_corso'])) {
         <?php endif ?>
     </div>
 
+    <div class="container mb-5">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const ctx = document.getElementById('myChart');
+
+    let endpoint = 'http://localhost/diarioProf/backend/API/iscrizione/getNumeroPresenze.php?id_corso=' +
+        <?php echo $_GET['id']; ?>;
+    $.get(endpoint, function(data, status) {
+        const stringa_x = new Array();
+        const stringa_y = new Array();
+        const color = new Array();
+        var i = 0;
+        data.forEach(Element => {
+            /*if (stringa_x != undefined) {
+                stringa_x = stringa_x + "'" + data[0]['nome'] + " " + data[0]['cognome'] + "',";
+
+            } else {
+                stringa_x = "'" + data[0]['nome'] + " " + data[0]['cognome'] + "',";
+            }*/
+            console.log(data);
+            stringa_x[i] = data[0]['nome'] + " " + data[0]['cognome']
+            stringa_y[i] = data[0]['numero_presenze'];
+
+            i++;
+        });
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: stringa_x.map(row => row),
+                datasets: [{
+                    label: '#Numero di presenze',
+                    data: stringa_y.map(row => row),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
     <script>
     $(document).ready(function() {
         $('#example').DataTable({});
@@ -93,7 +144,6 @@ if (empty($_GET['nome_corso'])) {
     </script>
 
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
