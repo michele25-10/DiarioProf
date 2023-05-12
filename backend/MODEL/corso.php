@@ -64,7 +64,7 @@ class Corso
 
     function getInfoCorsoDate($id)
     {
-        $sql = "SELECT i.data_inizio, i.note, a.nome
+        $sql = "SELECT i.data_inizio, i.note, a.nome, i.id
         FROM  diario.corso c
         inner join diario.incontro i on c.id = i.id_corso
         inner join diario.aula a on a.id = i.id_aula
