@@ -20,7 +20,8 @@ class Corso
         from corso c        
         INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
                 left JOIN docente d ON d.CF = c.id_docente
-                left JOIN docente d2 ON d2.CF = c.id_tutor;";
+                left JOIN docente d2 ON d2.CF = c.id_tutor
+                where c.status = '0';";
         return $sql;
     }
 
@@ -86,6 +87,11 @@ class Corso
         $sql = "UPDATE corso
         SET id_quadrimestre = '" . $id_quadrimestre . "', id_docente = '" . $id_docente . "',id_tutor = '" . $id_tutor . "', data_inizio = '" . $data_inizio . "', data_fine = '" . $data_fine . "', materia = '" . $materia . "', sede = '" . $sede . "'
         WHERE id='" . $id . "'; ";
+        return $sql;
+    }
+    function terminaCorso($id_corso)
+    {
+        $sql = "update corso set status='1' where id='" . $id_corso . "';";
         return $sql;
     }
 }
