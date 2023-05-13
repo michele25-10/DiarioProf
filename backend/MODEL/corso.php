@@ -26,10 +26,9 @@ class Corso
 
     function getCorsoById($id_corso)
     {
-        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizo, '-',q.data_fine) as 'id_quadrimestre', concat(d.nome, d.cognome) as 'id_docente', concat(d2.nome, d2.cognome) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        $sql = "SELECT c.id, c.tipologia, c.id_quadrimestre, if(c.id_docente = null, 'NULL', concat(d.nome, ' ' ,d.cognome)) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
         FROM corso c
-        INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
-        INNER JOIN docente d ON d.CF = c.id_docente
+        left JOIN docente d ON d.CF = c.id_docente
         LEFT JOIN docente d2 ON d2.CF = c.id_tutor
         WHERE c.id = '" . $id_corso . "'; ";
         return $sql;
@@ -37,7 +36,7 @@ class Corso
 
     function getCorsiByType($type)
     {
-        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizio, ' ',q.data_fine) as 'id_quadrimestre' ,concat(d.nome, ' ' ,d.cognome) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizio, ' ',q.data_fine) as 'id_quadrimestre' ,c.id_docente, c.id_tutor, c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
         from corso c        
         INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
         INNER JOIN docente d ON d.CF = c.id_docente
@@ -79,6 +78,14 @@ class Corso
         inner join iscrizione i2 on c.id = i2.id_corso
         inner join alunno a on i2.id_alunno = a.CF
         WHERE c.id = '" . $id . "';";
+        return $sql;
+    }
+
+    function updateCorso($id, $id_quadrimestre, $id_docente, $id_tutor, $data_inizio, $data_fine, $materia, $sede)
+    {
+        $sql = "UPDATE corso
+        SET id_quadrimestre = '" . $id_quadrimestre . "', id_docente = '" . $id_docente . "',id_tutor = '" . $id_tutor . "', data_inizio = '" . $data_inizio . "', data_fine = '" . $data_fine . "', materia = '" . $materia . "', sede = '" . $sede . "'
+        WHERE id='" . $id . "'; ";
         return $sql;
     }
 }
