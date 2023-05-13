@@ -223,7 +223,6 @@ function updateCorso($data)
     curl_close($curl); //chiudo sessione
 
     $response = json_decode($responseJson); //decodifico la response dal json
-
     if ($response->message == true) //response == true vuol dire sessione senza errori
     {
         return 1;

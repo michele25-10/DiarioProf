@@ -26,7 +26,7 @@ class Corso
 
     function getCorsoById($id_corso)
     {
-        $sql = "SELECT c.id, c.tipologia, c.id_quadrimestre, if(c.id_docente = null, 'NULL', concat(d.nome, ' ' ,d.cognome)) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        $sql = "SELECT c.id, c.tipologia, c.id_quadrimestre,  c.id_docente, c.id_tutor, c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
         FROM corso c
         left JOIN docente d ON d.CF = c.id_docente
         LEFT JOIN docente d2 ON d2.CF = c.id_tutor

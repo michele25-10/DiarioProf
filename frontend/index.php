@@ -229,7 +229,7 @@
             $res = updateCorso($data);
 
             if ($res == 1) {
-                echo '<script>window . location . replace("http://localhost/DiarioProf/frontend/index.php",);</script>';
+                echo '<script>window . location . replace("http://localhost/DiarioProf/frontend/index.php");</script>';
             }
         }
         ?>
