@@ -8,7 +8,7 @@ class Alunno
     }
     function getArchieveAule()
     {
-        $sql = "SELECT * from diario.aula";
+        $sql = "SELECT * from aula";
         return $sql;
     }
 }

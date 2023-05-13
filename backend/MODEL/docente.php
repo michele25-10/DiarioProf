@@ -13,7 +13,7 @@ class Docente
         return $sql;
     }
     function addDocente($CF, $nome, $cognome,$telefono){
-        $sql ="INSERT INTO diario.docente(CF, nome, cognome, telefono)
+        $sql ="INSERT INTO docente(CF, nome, cognome, telefono)
         VALUES ('" . $CF . "', '" . $nome . "', '" . $cognome . "', " . $telefono . ");";
         return $sql;
     }
