@@ -46,7 +46,7 @@ if (empty($_GET['nome_corso'])) {
             <?php echo ('<br><h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
             ?>
             <?php if ($list_corsi != -1) : ?>
-                <table id="example" class="table table-hover" style="width:100%">
+                <table id="example" class="table table-hover table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -69,7 +69,7 @@ if (empty($_GET['nome_corso'])) {
 
         <div class="container mt-5 mb-5">
             <?php if ($list_studenti != -1) : ?>
-                <table id="example2" class="table table-hover" style="width:100%">
+                <table id="example2" class="table table-hover table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -165,7 +165,10 @@ if (empty($_GET['nome_corso'])) {
 
     <div class="container">
         <button class="btn btn-secondary mb-5" onclick="stampa_id('da_stampare');">
-            Stampa la pagina
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z" />
+                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+            </svg>
         </button>
     </div>
 
