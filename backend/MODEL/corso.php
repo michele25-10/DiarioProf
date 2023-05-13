@@ -25,6 +25,17 @@ class Corso
         return $sql;
     }
 
+    function getArchiveCorsoStorico()
+    {
+        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizio, ' ',q.data_fine) as 'id_quadrimestre' ,if(c.id_docente = null, 'NULL', concat(d.nome, ' ' ,d.cognome)) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        from corso c        
+        INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
+                left JOIN docente d ON d.CF = c.id_docente
+                left JOIN docente d2 ON d2.CF = c.id_tutor
+                where c.status = '1';";
+        return $sql;
+    }
+
     function getCorsoById($id_corso)
     {
         $sql = "SELECT c.id, c.tipologia, c.id_quadrimestre,  c.id_docente, c.id_tutor, c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede

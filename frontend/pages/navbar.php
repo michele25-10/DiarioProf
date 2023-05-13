@@ -95,6 +95,10 @@
                                 partecipanti dei corsi dei prossimi 15 giorni</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-white-50"
+                        href="http://localhost/DiarioProf/frontend/pages/getArchivioCorsiStorico.php">Storico</a>
+                </li>
             </ul>
         </div>
     </div>
