@@ -261,3 +261,28 @@ function getArchiveCorsiStorico()
         return -1;
     }
 }
+function getStudentPresenze($id)
+{
+    $url = 'http://localhost/DiarioProf/backend/API/corso/getStudentPresenze.php?id=' . $id;
+
+    $json_data = file_get_contents($url);
+    if ($json_data != -1) {
+        $decode_data = json_decode($json_data, $assoc = true);
+        $list_data = $decode_data;
+        $corsi_arr = array();
+        if (!empty($list_data)) {
+            foreach ($list_data as $corsi) {
+                $corsi_record = array(
+                    'nome' => $corsi['nome'],
+                    'cognome' => $corsi['cognome'],
+                    'CF'  => $corsi['CF'],
+                    'numero_presenze' => $corsi['numero_presenze'],
+                );
+                array_push($corsi_arr, $corsi_record);
+            }
+            return $corsi_arr;
+        }
+    } else {
+        return -1;
+    }
+}

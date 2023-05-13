@@ -105,4 +105,13 @@ class Corso
         $sql = "update corso set status='1' where id='" . $id_corso . "';";
         return $sql;
     }
+    function getStudentPresenze($id)
+    {
+        $sql = " SELECT a.nome, a.cognome, a.CF, i2.numero_presenze
+        FROM corso c
+        inner join iscrizione i2 on c.id = i2.id_corso
+        inner join alunno a on i2.id_alunno = a.CF
+        WHERE c.id = '" . $id . "';";
+        return $sql;
+    }
 }
