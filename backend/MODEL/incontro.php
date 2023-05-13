@@ -42,6 +42,16 @@ class Incontro
         order by i.data_inizio desc;";
         return $sql;
     }
+    function getIncontriNext15Days()
+    {
+        $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, a.nome
+        FROM diario.incontro i
+        INNER JOIN diario.corso c ON c.id = i.id_corso
+        INNER JOIN diario.aula a on i.id_aula = a.id
+        where (i.data_inizio between date(now()) and date(now())+ interval 16 day)
+        order by i.data_inizio desc;";
+        return $sql;
+    }
     function getIncontriById($id)
     {
         $sql = "SELECT i.id, c.nome_corso as 'id_corso', i.data_inizio, i.note, i.id_aula, a.nome

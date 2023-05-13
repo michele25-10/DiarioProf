@@ -16,13 +16,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item fw-bold text-white-50"">
+      <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page" href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriToday.php">Incontri di oggi</a>
         </li>
-        <li class="nav-item fw-bold text-white-50"">
+        <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page" href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriTomorrow.php">Incontri di domani</a>
         </li>
-        <li class="nav-item fw-bold text-white-50"">
+        <li class="nav-item fw-bold text-white-50">
+          <a class="nav-link" aria-current="page" href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriNext15Days.php">Incontri dei prossimi 15 giorni</a>
+        </li>
+        <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page" href="http://localhost/DiarioProf/frontend/pages-ATA/countIncontro.php">Visualizza i partecipanti dei corsi dei prossimi 15 giorni</a>
         </li>
       </ul>

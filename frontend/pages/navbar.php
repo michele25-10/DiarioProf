@@ -57,6 +57,10 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+            <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/getIncontriNext15Days.php">Incontri dei prossimi 15 giorni</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li><a class="dropdown-item" href="http://localhost/DiarioProf/frontend/pages/listIncontri.php">Visualizza tutti gli incontri</a></li>
             <li>
               <hr class="dropdown-divider">
