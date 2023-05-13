@@ -18,6 +18,7 @@ class Incontro
         FROM diario.incontro i
         INNER JOIN diario.corso c ON c.id = i.id_corso
         INNER JOIN diario.aula a ON a.id = i.id_aula
+        WHERE i.data_inizio > now() 
         order by i.data_inizio desc;";
         return $sql;
     }
