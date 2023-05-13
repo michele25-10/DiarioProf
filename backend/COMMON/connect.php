@@ -3,10 +3,10 @@ class Database
 {
 
     //credentials localhost
-    private $server_local = "localhost";
-    private $user_local = "root";
-    private $passwd_local = "";
-    private $db_local = "diario";
+    private $server_local = "dispersione.violamarchesini.it";
+    private $user_local = "ugqjtwt4xzhta";
+    private $passwd_local = "oshw6uz1pyfn";
+    private $db_local = "dbsgn9iqrgbhey";
 
     //common credentials
     private $port = "3306";
