@@ -1,3 +1,5 @@
+<?php error_reporting(0) ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -27,6 +29,7 @@
     ?>
 
     <div class="container mt-5">
+        <h2 class="mb-4">I corsi attivi nella nostra scuola:</h2>
         <?php if ($list_corsi != -1) : ?>
         <table id="example" class="display" style="width:100%">
             <thead>

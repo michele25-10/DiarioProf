@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 
 if (empty($_GET['type'])) {
     header('location: ../index.php');
@@ -23,7 +23,7 @@ if (empty($_GET['type'])) {
 
     <?php
     include_once dirname(__FILE__) . '/../function/corsi.php';
-    $list_corsi = getCorsiByType($_GET['type']);
+    $list_corsi = getCorsiByTipologia($_GET['type']);
     ?>
 
     <div class="container mt-5">

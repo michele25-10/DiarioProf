@@ -46,7 +46,7 @@ if (empty($_GET['nome_corso'])) {
             <?php echo ('<br><h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
             ?>
             <?php if ($list_corsi != -1) : ?>
-                <table id="example" class="table table-hover table-responsive" style="width:100%">
+                <table id="example" class="table table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -69,7 +69,7 @@ if (empty($_GET['nome_corso'])) {
 
         <div class="container mt-5 mb-5">
             <?php if ($list_studenti != -1) : ?>
-                <table id="example2" class="table table-hover table-responsive" style="width:100%">
+                <table id="example2" class="table table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nome</th>

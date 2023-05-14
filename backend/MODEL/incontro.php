@@ -18,7 +18,7 @@ class Incontro
         FROM incontro i
         INNER JOIN corso c ON c.id = i.id_corso
         INNER JOIN aula a ON a.id = i.id_aula
-        WHERE i.data_inizio > now() 
+        WHERE i.data_inizio > now() and c.status = '0'
         order by i.data_inizio desc;";
         return $sql;
     }
@@ -28,7 +28,7 @@ class Incontro
         FROM incontro i
         INNER JOIN corso c ON c.id = i.id_corso
         INNER JOIN aula a on i.id_aula = a.id
-        WHERE date(i.data_inizio) = date(now()) 
+        WHERE date(i.data_inizio) = date(now()) and c.status = '0'
         order by i.data_inizio desc;";
         return $sql;
     }
@@ -38,7 +38,7 @@ class Incontro
         FROM incontro i
         INNER JOIN corso c ON c.id = i.id_corso
         INNER JOIN aula a on i.id_aula = a.id
-        WHERE date(i.data_inizio) = date(now() + interval 1 day)
+        WHERE date(i.data_inizio) = date(now() + interval 1 day) and c.status = '0'
         order by i.data_inizio desc;";
         return $sql;
     }
@@ -48,7 +48,7 @@ class Incontro
         FROM incontro i
         INNER JOIN corso c ON c.id = i.id_corso
         INNER JOIN aula a on i.id_aula = a.id
-        where (i.data_inizio between date(now()) and date(now())+ interval 16 day)
+        where (i.data_inizio between date(now()) and date(now())+ interval 16 day) and c.status = '0'
         order by i.data_inizio desc;";
         return $sql;
     }

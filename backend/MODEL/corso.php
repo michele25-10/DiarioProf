@@ -53,7 +53,7 @@ class Corso
         INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
         INNER JOIN docente d ON d.CF = c.id_docente
         LEFT JOIN docente d2 ON d2.CF = c.id_tutor
-        WHERE c.tipologia = '" . $type . "'
+        WHERE c.tipologia = '" . $type . "' and c.status = '0'
         order by c.nome_corso desc;";
         return $sql;
     }
@@ -112,6 +112,18 @@ class Corso
         inner join iscrizione i2 on c.id = i2.id_corso
         inner join alunno a on i2.id_alunno = a.CF
         WHERE c.id = '" . $id . "';";
+        return $sql;
+    }
+
+    function getCorsiByTipologia($type)
+    {
+        $sql = "SELECT c.id, c.tipologia, concat(q.data_inizio, ' ',q.data_fine) as 'id_quadrimestre' , if(c.id_docente = null, 'NULL', concat(d.nome, ' ' ,d.cognome)) as 'id_docente', if (c.id_tutor = NULL, 'NULL', concat(d2.nome, ' ' ,d2.cognome)) as 'id_tutor', c.materia, c.data_inizio, c.data_fine, c.nome_corso, c.sede
+        from corso c        
+        INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
+        left JOIN docente d ON d.CF = c.id_docente
+        LEFT JOIN docente d2 ON d2.CF = c.id_tutor
+        WHERE c.tipologia = '" . $type . "' and c.status = '0'
+        order by c.nome_corso desc;";
         return $sql;
     }
 }
