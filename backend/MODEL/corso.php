@@ -106,6 +106,12 @@ class Corso
         $sql = "update corso set status='1' where id='" . $id_corso . "';";
         return $sql;
     }
+
+    function eliminaCorso($id_corso)
+    {
+        $sql = "update corso set status='2' where id='" . $id_corso . "';";
+        return $sql;
+    }
     function getStudentPresenze($id)
     {
         $sql = " SELECT a.nome, a.cognome, a.CF, i2.numero_presenze
