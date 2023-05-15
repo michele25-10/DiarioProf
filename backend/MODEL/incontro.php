@@ -75,7 +75,7 @@ class Incontro
        inner join iscrizione i on a.CF = i.id_alunno 
        inner join corso c on i.id_corso = c.id 
        inner join incontro i2 on c.id = i2.id_corso 
-       where (i2.data_inizio between date(now()) and date(now())+ interval 16 day)
+       where (i2.data_inizio between date(now()) and date(now())+ interval 16 day) and c.status = '0'
        group by i2.data_inizio;";
         return $sql;
     }
