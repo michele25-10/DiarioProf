@@ -75,7 +75,7 @@
                     <td>
                         <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
-                        <button id="delete" type="button" data-bs-toggle="modal" data-bs-target="#elimina"
+                        <button id="delete" type="button" data-bs-toggle="modal" data-bs-target="#elimina<?php echo $row['id'];?>"
                             class="btn btn-danger me-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash" viewBox="0 0 16 16">
@@ -85,6 +85,25 @@
                                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
                             </svg>
                         </button>
+                        <div class="modal fade" id="elimina<?php echo $row['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Premendo questo tasto si eliminerà il corso.
+                    Se accetta non si potrà tornare indietro.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger"
+                        onclick="eliminaCorso(<?php echo $row['id'] ?>)">Accetto</button>
+                </div>
+            </div>
+        </div>
+    </div>
                         <a
                             href="pages/getInfo.php?id=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['nome_corso'] ?>">
                             <button class="btn btn-secondary me-3">
@@ -115,28 +134,7 @@
         <?php endif ?>
     </div>
 
-    <div class="modal fade" id="elimina" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Premendo questo tasto si eliminerà il corso.
-                    Se accetta non si potrà tornare indietro.
-                </div>
-                <div class="modal-footer">
-                    <?php
-                                        var_dump($row['id']);
-                                        ?>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger"
-                        onclick="eliminaCorso(<?php echo $id ?>)">Accetto</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class=" modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
         tabindex="-1">
@@ -263,17 +261,6 @@
                 ]);
             });
         };
-        </script>
-
-
-        <script>
-        function terminaCorso(id) {
-            let endpoint = 'http://localhost/diarioProf/backend/API/corso/terminaCorso.php?id_corso=' + id
-            $.get(endpoint, function(data, status) {
-                window.location.replace(
-                    "http://localhost/DiarioProf/frontend/");
-            });
-        }
         </script>
 
         <?php
