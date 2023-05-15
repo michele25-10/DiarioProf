@@ -262,7 +262,7 @@ session_start();
         });
 
         //Validazione del form
-        $(document).ready(function(str) {
+        /*$(document).ready(function(str) {
 
             $("#regiration_form").validate({
                 rules: {
@@ -402,13 +402,13 @@ session_start();
                        },
                        'alunno9': {
                            required: "Il campo è obbligatorio",
-                       }*/
+                       }
                 },
                 submitHandler: function(form) {
                     form.submit();
                 }
             });
-        });
+        });*/
     </script>
 
     <?php

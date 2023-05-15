@@ -99,6 +99,10 @@
                     <a class="nav-link fw-bold text-white-50"
                         href="http://localhost/DiarioProf/frontend/pages/getArchivioCorsiStorico.php">Storico</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-white-50"
+                        href="http://localhost/DiarioProf/frontend/pages/getConteggioCorsi.php">Gestione</a>
+                </li>
             </ul>
         </div>
     </div>
