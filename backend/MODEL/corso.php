@@ -133,4 +133,11 @@ class Corso
         order by c.nome_corso desc;";
         return $sql;
     }
+    function getNomeCorsoMax($type)
+    {
+        $sql = "select max(c.nome_corso) as 'nome_corso'
+        from corso c 
+        where c.tipologia = '" . $type . "';";
+        return $sql;
+    }
 }
