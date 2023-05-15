@@ -59,7 +59,10 @@ if (empty($_GET['nome_corso'])) {
                             data-bs-target="#exampleModal"
                             onclick="onClick(<?php echo $row['id_incontro'] ?>)">Edit</button>
                         <button class="btn btn-secondary me-3"
-                            onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';">
+                            onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';"
+                            <?php if ($list_studenti == -1) {
+                                                                                                                                                                                                                        echo "disabled";
+                                                                                                                                                                                                                    } ?>>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -79,7 +82,91 @@ if (empty($_GET['nome_corso'])) {
     </div>
 
     <div class="container mt-5 mb-5">
-        <?php if ($list_studenti != -1) : ?>
+        <?php if ($list_studenti == -1) : ?>
+        <?php
+            include_once dirname(__FILE__) . '\..\function\alunno.php';
+
+            $list_al = getArchieveAlunni();
+            ?>
+        <form method="post" action="../function/postAlunni.php">
+            <fieldset>
+                <h2>Iscritti:</h2>
+                <div class="row mt-1 mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Alunno:</label>
+                        <select class="form-select" aria-label="Default select example" name="alunno1" required>
+                            <option selected disabled>Alunni:</option>
+                            <?php foreach ($list_al as $row) :
+                                ?>
+                            <option value="<?php echo $row['CF']
+                                                    ?>">
+                                <?php echo ($row['nome'] . " " . $row['cognome'])
+                                        ?></option>
+                            <?php endforeach
+                                ?>
+                        </select>
+                    </div>
+                    <div id="alunni-typeB">
+
+                    </div>
+                    <div id="alunni-typeC">
+
+                    </div>
+                </div>
+                <input type="button" data-bs-toggle="modal" data-bs-target="#inviaCorso" class="btn btn-primary mb-5"
+                    value="Invia" />
+                <div class="modal fade" id="inviaCorso" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Premendo questo tasto si inseriranno gli alunni all'interno del database.
+                                Una volta inseriti non sarà possibile modificarli.
+                                Inserite gli alunni quando avrete la certezza che tutti quanti possano partecipare.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" class="btn btn-danger"
+                                    value="<?php echo $_GET['id'] . " " . $_GET['nome_corso'] ?>">Accetto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+        //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
+        var stringa = '<?php echo $_GET['nome_corso']; ?>';
+        var split = stringa.split('_');
+        var tipologia = split[1];
+        console.log(tipologia);
+        switch (tipologia) {
+            case "A":
+                $("#form-alunni-typeB").remove();
+                $("#form-alunni-typeC").remove();
+                break;
+
+            case "B":
+                $('#alunni-typeB').html(
+                    '<div id="form-alunni-typeB"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                );
+                $("#form-alunni-typeC").remove();
+                break;
+
+            case "C":
+                $("#form-alunni-typeB").remove();
+                $('#alunni-typeC').html(
+                    '<div id="form-alunni-typeC"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno7" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno8" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno9" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                );
+                break;
+        };
+        </script>
+        <?php elseif ($list_studenti != -1) : ?>
         <table id="example2" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -98,7 +185,6 @@ if (empty($_GET['nome_corso'])) {
                 <?php endforeach ?>
             </tbody>
         </table>
-        <?php endif ?>
     </div>
 
     <div class="container mb-5">
@@ -106,6 +192,29 @@ if (empty($_GET['nome_corso'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="container mb-5">
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#terminaCorso">Termina corso</button>
+    </div>
+    <div class="modal fade" id="terminaCorso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Premendo questo tasto si farà concludere il corso.
+                    Se accetta non si potrà tornare indietro.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger"
+                        onclick="terminaCorso(<?php echo $id ?>)">Accetto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
 
     <script>
     const ctx = document.getElementById('myChart');
@@ -138,7 +247,6 @@ if (empty($_GET['nome_corso'])) {
                 }
             } else {
                 if (stringa_y[i] < 4) {
-                    console.log("aaaaaaaaaaaa");
                     color[i] = "rgba(230, 0, 38, 0.5)";
                     border_color[i] = "rgb(230, 0, 38)";
                 } else {
@@ -171,30 +279,6 @@ if (empty($_GET['nome_corso'])) {
         });
     });
     </script>
-
-    <div class="container mb-5">
-        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#terminaCorso">Termina corso</button>
-    </div>
-    <div class="modal fade" id="terminaCorso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Premendo questo tasto si farà concludere il corso.
-                    Se accetta non si potrà tornare indietro.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger"
-                        onclick="terminaCorso(<?php echo $id ?>)">Accetto</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class=" modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
         tabindex="-1">
@@ -284,22 +368,22 @@ if (empty($_GET['nome_corso'])) {
 
         <?php
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = array(
-                "id" => $_POST["id"],
-                "data_inizio" => $_POST['data_inizio'],
-                "note" => $_POST['note'],
-                "id_aula" => $_POST['aula'],
-            );
-            $res = updateIncontro($data);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data = array(
+            "id" => $_POST["id"],
+            "data_inizio" => $_POST['data_inizio'],
+            "note" => $_POST['note'],
+            "id_aula" => $_POST['aula'],
+        );
+        $res = updateIncontro($data);
 
-            if ($res == 1) {
-                echo '<script>window . location . replace(
+        if ($res == 1) {
+            echo '<script>window . location . replace(
                 "http://localhost/DiarioProf/frontend/pages/getInfo.php?id=' . $_GET["id"] . '&nome_corso=' . $_GET["nome_corso"] . '"
     );</script>';
-            }
         }
-        ?>
+    }
+    ?>
 
         <script>
         $(document).ready(function() {

@@ -176,7 +176,7 @@ function getInfoCorsoStudent($id)
     $url = 'http://localhost/DiarioProf/backend/API/corso/getInfoCorsoStudent.php?id=' . $id;
 
     $json_data = file_get_contents($url);
-    if ($json_data != -1) {
+    if ($json_data  == true) {
         $decode_data = json_decode($json_data, $assoc = true);
         $list_data = $decode_data;
         $corsi_arr = array();

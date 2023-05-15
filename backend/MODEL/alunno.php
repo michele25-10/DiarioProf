@@ -17,7 +17,7 @@ class Alunno
         from alunno a
         inner join iscrizione i on i.id_alunno = a.CF
         inner join corso c on c.id = i.id_corso
-        where c.nome_corso = '" . $nome_corso . "';";
+        where c.nome_corso = '" . $nome_corso . "' AND c.status!='2';";
         return $sql;
     }
 }
