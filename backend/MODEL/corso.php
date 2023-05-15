@@ -21,7 +21,8 @@ class Corso
         INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
                 left JOIN docente d ON d.CF = c.id_docente
                 left JOIN docente d2 ON d2.CF = c.id_tutor
-                where c.status = '0';";
+                where c.status = '0'
+                order by c.nome_corso ASC;";
         return $sql;
     }
 
@@ -32,7 +33,7 @@ class Corso
         INNER JOIN quadrimestre q ON q.id = c.id_quadrimestre
                 left JOIN docente d ON d.CF = c.id_docente
                 left JOIN docente d2 ON d2.CF = c.id_tutor
-                where c.status = '1';";
+                where c.status = '1' order by c.nome_corso ASC;";
         return $sql;
     }
 
@@ -62,14 +63,14 @@ class Corso
     {
         $sql = "select count(c.id) as 'count'
         from corso c 
-        where c.tipologia = '" . $type . "';";
+        where c.tipologia = '" . $type . "' AND c.status != '2';";
         return $sql;
     }
     function getCorsoByNomeCorso($nome_corso)
     {
         $sql = "SELECT c.id
         FROM corso c
-        WHERE c.nome_corso = '" . $nome_corso . "';";
+        WHERE c.nome_corso = '" . $nome_corso . "' and c.status !='2';";
         return $sql;
     }
 
