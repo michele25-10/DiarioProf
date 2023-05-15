@@ -17,7 +17,6 @@
 
     <?php
     include_once dirname(__FILE__) . '/../function/corsi.php';
-
     $list_corsi = getArchiveCorsiStorico();
     ?>
 

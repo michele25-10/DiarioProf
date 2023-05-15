@@ -23,6 +23,7 @@ session_start();
     include_once dirname(__FILE__) . '\..\function\docente.php';
     include_once dirname(__FILE__) . '\..\function\alunno.php';
     include_once dirname(__FILE__) . '\..\function\aula.php';
+    include_once dirname(__FILE__) . '\..\function\corsi.php';
 
     $list_quad = getArchiveQuadrimestre();
     $list_doc = getArchieveDocente();
@@ -418,7 +419,9 @@ session_start();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['tipologia']) && !empty($_POST['id_quadrimestre']) && !empty($_POST['materia']) && !empty($_POST['data_inizio']) && !empty($_POST['data_fine']) && !empty($_POST['sede']) && !empty($_POST['incontro1']) && !empty($_POST['incontro2']) && !empty($_POST['incontro3']) && !empty($_POST['incontro4']) && !empty($_POST['aula1']) && !empty($_POST['aula2']) && !empty($_POST['aula3']) && !empty($_POST['aula4'])) {
-            $count = countCorsoByType($_POST['tipologia']);
+            $stringa = getNomeCorsoMax($_POST['tipologia']);
+            $stringa = explode("_", $stringa);
+            $count = intval($stringa[2]);
             if ($count != -1) {
                 $count = $count + 1;
                 if ($count < 10) {

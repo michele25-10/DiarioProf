@@ -15,7 +15,7 @@ $dtbase = new Database();
 $conn = $dtbase->connect();
 
 $league = new Corso($conn);
-$query = $league->CountCorsiByType($type);
+$query = $league->getNomeCorsoMax($type);
 $result = $conn->query($query);
 
 if (mysqli_num_rows($result) > 0) {
