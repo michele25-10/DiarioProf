@@ -309,31 +309,31 @@ session_start();
                         required: true,
                     },
                     'alunno1': {
-                        required: true,
+                        required: false,
                     },
                     'alunno2': {
-                        required: true,
+                        required: false,
                     },
                     'alunno3': {
-                        required: true,
+                        required: false,
                     },
                     'alunno4': {
-                        required: true,
+                        required: false,
                     },
                     'alunno5': {
-                        required: true,
+                        required: false,
                     },
                     'alunno6': {
-                        required: true,
+                        required: false,
                     },
                     'alunno7': {
-                        required: true,
+                        required: false,
                     },
                     'alunno8': {
-                        required: true,
+                        required: false,
                     },
                     'alunno9': {
-                        required: true,
+                        required: false,
                     }
                 },
                 messages: {
@@ -370,7 +370,7 @@ session_start();
                     'incontro5': {
                         required: "Il campo è obbligatorio",
                     },
-                    'alunno1': {
+                 /*   'alunno1': {
                         required: "Il campo è obbligatorio",
                     },
                     'alunno2': {
@@ -396,7 +396,7 @@ session_start();
                     },
                     'alunno9': {
                         required: "Il campo è obbligatorio",
-                    }
+                    }*/
                 },
                 submitHandler: function(form) {
                     form.submit();
