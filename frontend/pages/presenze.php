@@ -71,9 +71,154 @@ if (empty($_GET['nome_corso'])) {
                 </table>
             </form>
         </div>
-        <script>
 
+        <script>
+            $("#alunno1")
+                .change(function() {
+                    $("#alunno1 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno1').css('background', 'red');
+                                $('#alunno1').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno1').css('background', 'green');
+                                $('#alunno1').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno2")
+                .change(function() {
+                    $("#alunno2 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno2').css('background', 'red');
+                                $('#alunno2').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno2').css('background', 'green');
+                                $('#alunno2').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno3")
+                .change(function() {
+                    $("#alunno3 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno3').css('background', 'red');
+                                $('#alunno3').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno3').css('background', 'green');
+                                $('#alunno3').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno4")
+                .change(function() {
+                    $("#alunno4 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno4').css('background', 'red');
+                                $('#alunno4').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno4').css('background', 'green');
+                                $('#alunno4').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno5")
+                .change(function() {
+                    $("#alunno5 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno5').css('background', 'red');
+                                $('#alunno5').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno5').css('background', 'green');
+                                $('#alunno5').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno6")
+                .change(function() {
+                    $("#alunno6 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno6').css('background', 'red');
+                                $('#alunno6').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno6').css('background', 'green');
+                                $('#alunno6').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno7")
+                .change(function() {
+                    $("#alunno7 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno7').css('background', 'red');
+                                $('#alunno7').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno7').css('background', 'green');
+                                $('#alunno7').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno8")
+                .change(function() {
+                    $("#alunno8 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno8').css('background', 'red');
+                                $('#alunno8').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno8').css('background', 'green');
+                                $('#alunno8').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
+            $("#alunno9")
+                .change(function() {
+                    $("#alunno9 option:selected").each(function() {
+                        var str = $(this).text();
+                        switch (str) {
+                            case "Assente":
+                                $('#alunno9').css('background', 'red');
+                                $('#alunno9').css('color', 'white');
+                                break;
+                            case "Presente":
+                                $('#alunno9').css('background', 'green');
+                                $('#alunno9').css('color', 'white');
+                                break;
+                        }
+                    })
+                });
         </script>
+
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = array();
@@ -230,16 +375,56 @@ if (empty($_GET['nome_corso'])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
         </script>
 </body>
-
-</html>
-<style type="text/css">
-    #presente {
+<style>
+    #alunno1 {
         background-color: green;
         color: white;
     }
 
-    #assente {
-        background-color: red;
+    #alunno2 {
+        background-color: green;
         color: white;
     }
+
+    #alunno3 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno4 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno5 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno6 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno7 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno8 {
+        background-color: green;
+        color: white;
+    }
+
+    #alunno9 {
+        background-color: green;
+        color: white;
+    }
+
+    option {
+        background-color: white;
+        color: black;
+    }
 </style>
+
+</html>
