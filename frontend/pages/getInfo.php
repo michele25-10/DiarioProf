@@ -21,12 +21,12 @@ error_reporting(0);
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\navbar.php'); ?>
+    <?php require_once(__DIR__ . '/navbar.php'); ?>
 
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';
     include_once dirname(__FILE__) . '/../function/corsi.php';
-    include_once dirname(__FILE__) . '\..\function\aula.php';
+    include_once dirname(__FILE__) . '/../function/aula.php';
 
     $list_aule = getArchieveAule();
     $id = $_GET['id'];
@@ -78,7 +78,7 @@ error_reporting(0);
     <div class="container mt-5 mb-5">
         <?php if ($list_studenti == -1) : ?>
             <?php
-            include_once dirname(__FILE__) . '\..\function\alunno.php';
+            include_once dirname(__FILE__) . '/../function/alunno.php';
 
             $list_al = getArchieveAlunni();
             ?>
@@ -208,7 +208,7 @@ error_reporting(0);
 <script>
     const ctx = document.getElementById('myChart');
 
-    let endpoint = 'http://localhost/diarioProf/backend/API/iscrizione/getNumeroPresenze.php?id_corso=' +
+    let endpoint = 'https://dispersione.violamarchesini.it/API/iscrizione/getNumeroPresenze.php?id_corso=' +
         <?php echo $_GET['id']; ?>;
     $.get(endpoint, function(data, status) {
         const stringa_x = new Array();
@@ -303,15 +303,15 @@ error_reporting(0);
 
     <script>
         function terminaCorso(id) {
-            let endpoint = 'http://localhost/diarioProf/backend/API/corso/terminaCorso.php?id_corso=' + id
+            let endpoint = 'https://dispersione.violamarchesini.it/API/corso/terminaCorso.php?id_corso=' + id
             $.get(endpoint, function(data, status) {
                 window.location.replace(
-                    "http://localhost/DiarioProf/frontend/");
+                    "https://dispersione.violamarchesini.it/");
             });
         }
 
         function onClick(id) {
-            let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id
+            let endpoint = 'https://dispersione.violamarchesini.it/API/incontro/getIncontriById.php?id=' + id
             $.get(endpoint, function(data, status) {
                 //Viene inserito negli input del form i contenuti degli incontri con quell'ID
                 $('#data_inizio').val(data[0][
@@ -360,7 +360,7 @@ error_reporting(0);
 
         if ($res == 1) {
             echo '<script>window . location . replace(
-                "http://localhost/DiarioProf/frontend/pages/getInfo.php?id=' . $_GET["id"] . '&nome_corso=' . $_GET["nome_corso"] . '"
+                "https://dispersione.violamarchesini.it/pages/getInfo.php?id=' . $_GET["id"] . '&nome_corso=' . $_GET["nome_corso"] . '"
     );</script>';
         }
     }

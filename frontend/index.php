@@ -14,12 +14,12 @@
 
 <body>
 
-    <?php require_once(__DIR__ . '\pages\navbar.php'); ?>
+    <?php require_once(__DIR__ . '/pages/navbar.php'); ?>
 
     <?php
     include_once dirname(__FILE__) . '/function/corsi.php';
-    include_once dirname(__FILE__) . '\function\docente.php';
-    include_once dirname(__FILE__) . '\function\quadrimestre.php';
+    include_once dirname(__FILE__) . '/function/docente.php';
+    include_once dirname(__FILE__) . '/function/quadrimestre.php';
 
 
     $list_corsi = getArchiveCorsi();
@@ -75,7 +75,7 @@
                                 <td>
                                     <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
                                     <button id="delete" type="button" data-bs-toggle="modal" data-bs-target="#elimina<?php echo $row['id']; ?>" class="btn btn-danger me-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
                                         </svg>
@@ -100,7 +100,7 @@
                                     </div>
                                     <a href="pages/getInfo.php?id=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['nome_corso'] ?>">
                                         <button class="btn btn-secondary me-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                            <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                                             </svg>
                                         </button>
@@ -200,17 +200,17 @@
 
         <script>
             function eliminaCorso(id) {
-                let endpoint = 'http://localhost/diarioProf/backend/API/corso/eliminaCorso.php?id_corso=' + id
+                let endpoint = 'https://dispersione.violamarchesini.it/API/corso/eliminaCorso.php?id_corso=' + id
                 $.get(endpoint, function(data, status) {
                     window.location.replace(
-                        "http://localhost/DiarioProf/frontend/");
+                        "https://dispersione.violamarchesini.it/index.php");
                 });
             }
         </script>
 
         <script>
             function onClick(id) {
-                let endpoint = 'http://localhost/diarioProf/backend/API/corso/getCorsoById.php?id_corso=' + id
+                let endpoint = 'https://dispersione.violamarchesini.it/API/corso/getCorsoById.php?id_corso=' + id
                 $.get(endpoint, function(data, status) {
                     //Viene inserito negli input del form i contenuti degli incontri con quell'ID
                     $('#nome_corso').text(data[0][
@@ -274,7 +274,7 @@
             $res = updateCorso($data);
 
             if ($res == 1) {
-                echo '<script>window . location . replace("http://localhost/DiarioProf/frontend/index.php");</script>';
+                echo '<script>window . location . replace("https://dispersione.violamarchesini.it/index.php");</script>';
             }
         }
         ?>

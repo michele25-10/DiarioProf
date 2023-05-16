@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\navbar.php'); ?>
+    <?php require_once(__DIR__ . '/navbar.php'); ?>
 
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';

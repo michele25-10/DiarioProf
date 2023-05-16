@@ -11,7 +11,7 @@
 </head>
 <nav class="navbar navbar-expand-lg" style='background-color: #602483'>
   <div class="container-fluid">
-    <img src="http://localhost/DiarioProf/frontend/assets/viola-logo.svg" alt="Logo" width="150" height="75">
+    <img src="https://dispersione.violamarchesini.it/assets/viola-logo.svg" alt="Logo" width="150" height="75">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,20 +21,20 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page"
-            href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriToday.php">Incontri di oggi</a>
+            href="https://dispersione.violamarchesini.it/pages-ATA/getIncontriToday.php">Incontri di oggi</a>
         </li>
         <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page"
-            href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriTomorrow.php">Incontri di domani</a>
+            href="https://dispersione.violamarchesini.it/pages-ATA/getIncontriTomorrow.php">Incontri di domani</a>
         </li>
         <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page"
-            href="http://localhost/DiarioProf/frontend/pages-ATA/getIncontriNext15Days.php">Incontri dei prossimi 15
+            href="https://dispersione.violamarchesini.it/pages-ATA/getIncontriNext15Days.php">Incontri dei prossimi 15
             giorni</a>
         </li>
         <li class="nav-item fw-bold text-white-50">
           <a class="nav-link" aria-current="page"
-            href="http://localhost/DiarioProf/frontend/pages-ATA/countIncontro.php">Visualizza i partecipanti dei corsi
+            href="https://dispersione.violamarchesini.it/pages-ATA/countIncontro.php">Visualizza i partecipanti dei corsi
             dei prossimi 15 giorni</a>
         </li>
       </ul>

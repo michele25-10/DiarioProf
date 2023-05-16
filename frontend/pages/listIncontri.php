@@ -13,12 +13,12 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\navbar.php'); ?>
+    <?php require_once(__DIR__ . '/navbar.php'); ?>
 
     <?php
     include_once dirname(__FILE__) . '/../function/incontro.php';
     include_once dirname(__FILE__) . '/../function/presenze.php';
-    include_once dirname(__FILE__) . '\..\function\aula.php';
+    include_once dirname(__FILE__) . '/../function/aula.php';
 
     $list_aule = getArchieveAule();
     $list_incontri = getArchieveIncontri();
@@ -122,7 +122,7 @@
     });
 
     function onClick(id) {
-        let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id;
+        let endpoint = 'https://dispersione.violamarchesini.it/API/incontro/getIncontriById.php?id=' + id;
         $.get(endpoint, function(data, status) {
             console.log(data[0]);
             //Viene inserito negli input del form i contenuti degli incontri con quell'ID
@@ -172,7 +172,7 @@
 
         if ($res == 1) {
             echo '<script>window . location . replace(
-                " http://localhost/DiarioProf/frontend/pages/listIncontri.php"
+                " https://dispersione.violamarchesini.it/pages/listIncontri.php"
             );</script>';
         }
     }

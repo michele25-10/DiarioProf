@@ -16,8 +16,8 @@ session_start();
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\navbar.php');
-    include_once dirname(__FILE__) . '\..\function\corsi.php';
+    <?php require_once(__DIR__ . '/navbar.php');
+    include_once dirname(__FILE__) . '/../function/corsi.php';
     ?>
 
 

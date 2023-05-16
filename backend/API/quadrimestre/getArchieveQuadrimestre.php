@@ -11,7 +11,6 @@ $conn = $dtbase->connect();
 $quad = new Quadrimestre($conn);
 $query = $quad->getArchiveQuadrimestre();
 $result = $conn->query($query);
-
 if (mysqli_num_rows($result) > 0) {
     $quads_arr = array();
     while ($row = $result->fetch_assoc()) {
