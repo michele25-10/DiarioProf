@@ -35,40 +35,43 @@ if (empty($_GET['nome_corso'])) {
     <h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
             ?>
             <form method="post" id="form">
-                <table class="table" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nome e cognome</th>
-
-                            <th>
-                                <div class="d-flex justify-content-center">Assente?</div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 0 ?>
-                        <?php foreach ($list_studenti as $row) : ?>
+                <div style="overflow: auto; overflow-y: hidden">
+                    <table class="table" style="width:100%">
+                        <thead>
                             <tr>
-                                <td><?php echo $row['nome'] . " " . $row['cognome'] ?></td>
+                                <th>Nome e cognome</th>
+
+                                <th>
+                                    <div class="d-flex justify-content-center">Assente?</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 0 ?>
+                            <?php foreach ($list_studenti as $row) : ?>
+                                <tr>
+                                    <td><?php echo $row['nome'] . " " . $row['cognome'] ?></td>
+                                    <td>
+                                        <?php $i++; ?>
+                                        <select class="form-select" aria-label="Default select example" id="<?php echo "alunno" . $i; ?>" id=" <?php echo "alunno" . $i ?>" name="<?php echo "alunno" . $i ?>" required>
+                                            <option id="presente" value="<?php echo $row['CF'] . " 0" ?>" selected>Presente
+                                            </option>
+                                            <option id="assente" value="<?php echo $row['CF'] . " 1" ?>">Assente</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                            <tr class="table-group-divider">
+                                <td></td>
                                 <td>
-                                    <?php $i++; ?>
-                                    <select class="form-select" aria-label="Default select example" id="<?php echo "alunno" . $i; ?>" id=" <?php echo "alunno" . $i ?>" name="<?php echo "alunno" . $i ?>" required>
-                                        <option id="presente" value="<?php echo $row['CF'] . " 0" ?>" selected>Presente</option>
-                                        <option id="assente" value="<?php echo $row['CF'] . " 1" ?>">Assente</option>
-                                    </select>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary mt-3 p-2">Invia</button>
+                                    </div>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
-                        <tr class="table-group-divider">
-                            <td></td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary mt-3 p-2">Invia</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </form>
         </div>
 
@@ -255,47 +258,49 @@ if (empty($_GET['nome_corso'])) {
             ?>
             <div class="container mt-5 mb-5">
                 <?php if ($list != -1) : ?>
-                    <table id="example" class="table table-hover" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Nome</th>
-                                <th>Cognome</th>
-                                <th>Stato</th>
-                                <th>Option</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($list as $row) : ?>
+                    <div style="overflow: auto; overflow-y: hidden">
+                        <table id="example" class="table table-hover" style="width:100%">
+                            <thead>
                                 <tr>
-                                    <td><i class="bi bi-person-badge-fill">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" style="color: <?php
-                                                                                                                                                if ($row['status'] == "Presente") {
-                                                                                                                                                    echo 'green';
-                                                                                                                                                } else {
-                                                                                                                                                    echo 'red';
-                                                                                                                                                }
-                                                                                                                                                ?>" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
-                                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
-                                            </svg>
-                                        </i></td>
-                                    <td><?php echo $row['nome'] ?></td>
-                                    <td><?php echo $row['cognome'] ?></td>
-                                    <td><?php echo $row['status'] ?></td>
-                                    <td>
-                                        <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="<?php
-                                                                                                                                                        if ($row['status'] == 'Assente') {
-                                                                                                                                                            $status = 1;
-                                                                                                                                                        }
-                                                                                                                                                        if ($row['status'] == 'Presente') {
-                                                                                                                                                            $status = 0;
-                                                                                                                                                        }
-                                                                                                                                                        echo ("onClick(" . $row['id'] . ", " . $status . ")") ?>">Edit</button>
-                                    </td>
+                                    <th></th>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th>Stato</th>
+                                    <th>Option</th>
                                 </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($list as $row) : ?>
+                                    <tr>
+                                        <td><i class="bi bi-person-badge-fill">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" style="color: <?php
+                                                                                                                                                    if ($row['status'] == "Presente") {
+                                                                                                                                                        echo 'green';
+                                                                                                                                                    } else {
+                                                                                                                                                        echo 'red';
+                                                                                                                                                    }
+                                                                                                                                                    ?>" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
+                                                </svg>
+                                            </i></td>
+                                        <td><?php echo $row['nome'] ?></td>
+                                        <td><?php echo $row['cognome'] ?></td>
+                                        <td><?php echo $row['status'] ?></td>
+                                        <td>
+                                            <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="<?php
+                                                                                                                                                            if ($row['status'] == 'Assente') {
+                                                                                                                                                                $status = 1;
+                                                                                                                                                            }
+                                                                                                                                                            if ($row['status'] == 'Presente') {
+                                                                                                                                                                $status = 0;
+                                                                                                                                                            }
+                                                                                                                                                            echo ("onClick(" . $row['id'] . ", " . $status . ")") ?>">Edit</button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php endif ?>
             </div>
 

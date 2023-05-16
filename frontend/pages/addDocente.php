@@ -38,7 +38,7 @@ session_start();
             <label for="exampleFormControlInput1" class="form-label">Telefono docente</label>
             <input class="form-control" type="text" id="telefono" placeholder="telefono" name="telefono" maxlength="10" required>
         </div>
-        <button type="submit" class="btn btn-success" name="login">Conferma</button>
+        <button type="submit" class="btn btn-primary" name="login">Conferma</button>
 
         <script type="text/javascript">
             $('#telefono').keypress(function(e) {

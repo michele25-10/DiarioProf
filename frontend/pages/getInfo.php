@@ -39,37 +39,39 @@ error_reporting(0);
     <h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
         ?>
         <?php if ($list_corsi != -1) : ?>
-            <table id="example" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Note</th>
-                        <th>Aula</th>
-                        <th>View More</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($list_corsi as $row) : ?>
+            <div style="overflow: auto; overflow-y: hidden ">
+                <table id="example" class="display">
+                    <thead>
                         <tr>
-                            <td><?php echo $row['data_inizio'] ?></td>
-                            <td><?php echo $row['note'] ?></td>
-                            <td><?php echo $row['aula'] ?></td>
-                            <td>
-                                <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id_incontro'] ?>)">Edit</button>
-                                <button class="btn btn-secondary me-3" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';" <?php if ($list_studenti == -1) {
-                                                                                                                                                                                                                        echo "disabled";
-                                                                                                                                                                                                                    } ?>>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
-                                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                    </svg>
-                                </button>
-                            </td>
+                            <th>Data</th>
+                            <th>Note</th>
+                            <th>Aula</th>
+                            <th>View More</th>
                         </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($list_corsi as $row) : ?>
+                            <tr>
+                                <td><?php echo $row['data_inizio'] ?></td>
+                                <td><?php echo $row['note'] ?></td>
+                                <td><?php echo $row['aula'] ?></td>
+                                <td>
+                                    <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id_incontro'] ?>)">Edit</button>
+                                    <button class="btn btn-secondary me-3" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';" <?php if ($list_studenti == -1) {
+                                                                                                                                                                                                                            echo "disabled";
+                                                                                                                                                                                                                        } ?>>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
+                                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         <?php endif ?>
     </div>
 
@@ -214,9 +216,6 @@ error_reporting(0);
         const color = new Array();
         const border_color = new Array();
         var i = 0;
-
-        console.log(data);
-
         var stringa_corso = <?php echo "'" . $_GET['nome_corso'] . "'"; ?>;
         var stringa_scomposta = stringa_corso.split('_');
         var tipologia = stringa_scomposta[1];
@@ -243,8 +242,6 @@ error_reporting(0);
             }
             i++;
         });
-        console.log(stringa_x);
-        console.log(stringa_y);
         new Chart(ctx, {
             type: 'bar',
             data: {
@@ -282,7 +279,7 @@ error_reporting(0);
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Note:</label>
-                        <textarea class="form-control" id="note" name="note" maxlength="100"></textarea>
+                        <textarea class="form-control" id="note" name="note" maxlength="199"></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Aula:</label>
@@ -316,7 +313,6 @@ error_reporting(0);
         function onClick(id) {
             let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id
             $.get(endpoint, function(data, status) {
-                console.log(data[0]);
                 //Viene inserito negli input del form i contenuti degli incontri con quell'ID
                 $('#data_inizio').val(data[0][
                     'data_inizio'
