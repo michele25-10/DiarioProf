@@ -1,9 +1,14 @@
 <?php
 include_once dirname(__FILE__) . '/../function/presenze.php';
+include_once dirname(__FILE__) . '/../function/alunno.php';
+
 if (empty($_GET['id_incontro'])) {
     header('location: ../index.php');
 }
 if (empty($_GET['nome_corso'])) {
+    header('location: ../index.php');
+}
+if (getStudentByCorsoName($_GET['nome_corso']) == -1) {
     header('location: ../index.php');
 }
 ?>
