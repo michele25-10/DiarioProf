@@ -11,10 +11,9 @@
 </head>
 <nav class="navbar navbar-expand-lg" style='background-color: #602483'>
     <div class="container-fluid">
-        <a href="http://localhost/DiarioProf/frontend/">
+        <a href="http://localhost/DiarioProf/frontend/pages/homePage.php">
             <img src="http://localhost/DiarioProf/frontend/assets/viola-logo.svg" alt="Logo" width="150" height="75">
         </a>
-        <a class="navbar-brand fw-bold text-white" href="http://localhost/DiarioProf/frontend/"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

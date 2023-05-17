@@ -14,12 +14,12 @@
 
 <body>
 
-    <?php require_once(__DIR__ . '\pages\navbar.php'); ?>
+    <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <?php
-    include_once dirname(__FILE__) . '/function/corsi.php';
-    include_once dirname(__FILE__) . '\function\docente.php';
-    include_once dirname(__FILE__) . '\function\quadrimestre.php';
+    include_once dirname(__FILE__) . '\..\function\corsi.php';
+    include_once dirname(__FILE__) . '\..\function\docente.php';
+    include_once dirname(__FILE__) . '\..\function\quadrimestre.php';
 
 
     $list_corsi = getArchiveCorsi();
@@ -203,7 +203,7 @@
                 let endpoint = 'http://localhost/diarioProf/backend/API/corso/eliminaCorso.php?id_corso=' + id
                 $.get(endpoint, function(data, status) {
                     window.location.replace(
-                        "http://localhost/DiarioProf/frontend/");
+                        "http://localhost/DiarioProf/frontend/pages/homePage.php");
                 });
             }
         </script>
@@ -274,7 +274,7 @@
             $res = updateCorso($data);
 
             if ($res == 1) {
-                echo '<script>window . location . replace("http://localhost/DiarioProf/frontend/index.php");</script>';
+                echo '<script>window . location . replace("http://localhost/DiarioProf/frontend/pages/homePage.php");</script>';
             }
         }
         ?>

@@ -1,9 +1,9 @@
 <?php
 if (empty($_GET['id'])) {
-    header('location: ../index.php');
+    header('location: ../homePage.php');
 }
 if (empty($_GET['nome_corso'])) {
-    header('location: ../index.php');
+    header('location: ../homePage.php');
 }
 error_reporting(0);
 ?>
@@ -306,7 +306,7 @@ error_reporting(0);
             let endpoint = 'http://localhost/diarioProf/backend/API/corso/terminaCorso.php?id_corso=' + id
             $.get(endpoint, function(data, status) {
                 window.location.replace(
-                    "http://localhost/DiarioProf/frontend/");
+                    "http://localhost/DiarioProf/frontend/pages/homePage.php");
             });
         }
 

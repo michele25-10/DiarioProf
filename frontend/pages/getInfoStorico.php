@@ -1,9 +1,9 @@
 <?php
 if (empty($_GET['id'])) {
-    header('location: ../index.php');
+    header('location: ../homePage.php');
 }
 if (empty($_GET['nome_corso'])) {
-    header('location: ../index.php');
+    header('location: ../homePage.php');
 }
 ?>
 
