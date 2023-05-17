@@ -1,3 +1,9 @@
+create table `user`(
+id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
+email 				varchar(60) not null,	
+password			varchar(64) not null
+);
+       
 create table corso(
 id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
 tipologia			varchar(1) not null,
