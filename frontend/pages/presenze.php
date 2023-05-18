@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: ../index.php');
+}
+
 include_once dirname(__FILE__) . '/../function/presenze.php';
 include_once dirname(__FILE__) . '/../function/alunno.php';
 

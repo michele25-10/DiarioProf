@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: ../index.php');
+}
+
 if (empty($_GET['id'])) {
     header('location: ../homePage.php');
 }

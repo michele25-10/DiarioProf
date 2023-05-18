@@ -1,4 +1,10 @@
-<?php error_reporting(0) ?>
+<?php
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: ../index.php');
+}
+
+error_reporting(0); ?>
 
 <!doctype html>
 <html lang="en">

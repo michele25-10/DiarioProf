@@ -103,6 +103,9 @@
                         href="http://localhost/DiarioProf/frontend/pages/getConteggioCorsi.php">Gestione</a>
                 </li>
             </ul>
+            <a href="../function/logout.php">
+                <button class="btn btn-danger">Esci</button>
+            </a>
         </div>
     </div>
 </nav>
