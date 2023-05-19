@@ -52,8 +52,8 @@ if (empty($_SESSION['user_id'])) {
                                 <td><?php echo $row['note'] ?></td>
                                 <td><?php echo $row['aula'] ?> </td>
                                 <td>
-                                    <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
-                                    <button class="btn btn-secondary me-3" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>';">
+                                    <button id="edit" class="btn btn-primary me-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id'] ?>)">Edit</button>
+                                    <button class="btn btn-secondary me-2 mb-2" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id'] ?>&nome_corso=<?php echo $row['id_corso'] ?>';">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
                                             <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
@@ -116,7 +116,31 @@ if (empty($_SESSION['user_id'])) {
 
     <script>
         $(document).ready(function() {
-            $('#example').DataTable({});
+            // Setup - add a text input to each footer cell
+            $('#example tfoot th').each(function() {
+                var title = $(this).text();
+                if (title != "Opzione") {
+                    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                }
+            });
+
+            // DataTable
+            var table = $('#example').DataTable({
+                initComplete: function() {
+                    // Apply the search
+                    this.api()
+                        .columns()
+                        .every(function() {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change clear', function() {
+                                if (that.search() !== this.value) {
+                                    that.search(this.value).draw();
+                                }
+                            });
+                        });
+                },
+            });
         });
 
         function onClick(id) {
@@ -180,5 +204,13 @@ if (empty($_SESSION['user_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
 </body>
+
+<style>
+    tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+</style>
 
 </html>
