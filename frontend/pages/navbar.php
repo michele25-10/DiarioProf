@@ -85,6 +85,9 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/getConteggioCorsi.php">Gestione</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-white-50" href="http://localhost/DiarioProf/frontend/pages/archivioAlunni.php">Alunni</a>
+                </li>
             </ul>
             <a href="../function/logout.php">
                 <button class="btn btn-danger">Esci</button>
