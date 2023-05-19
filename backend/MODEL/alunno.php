@@ -20,4 +20,11 @@ class Alunno
         where c.nome_corso = '" . $nome_corso . "' AND c.status!='2';";
         return $sql;
     }
+    function getStudentByCF($CF)
+    {
+        $sql = "SELECT nome, cognome, SIDI, telefono
+                FROM alunno
+                WHERE CF = '" . $CF . "';";
+        return $sql;
+    }
 }
