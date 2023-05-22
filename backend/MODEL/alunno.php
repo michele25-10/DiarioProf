@@ -27,4 +27,11 @@ class Alunno
                 WHERE CF = '" . $CF . "';";
         return $sql;
     }
+    function updateAlunno($id, $nome, $cognome, $SIDI, $telefono)
+    {
+        $sql = "UPDATE alunno
+        SET nome = '" . $nome . "', cognome = '" . $cognome . "', SIDI = '" . $SIDI . "', telefono = '" . $telefono . "'
+        WHERE CF='" . $id . "'; ";
+        return $sql;
+    }
 }

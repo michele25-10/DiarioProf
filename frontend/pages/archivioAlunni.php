@@ -69,7 +69,7 @@ if (empty($_SESSION['user_id'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="form">
+                    <form method="post">
                         <div class="mb-3">
                             <label class="form-label">Nome:</label>
                             <input type="text" id="nome" name="nome" class="form-control"></input>
@@ -146,6 +146,26 @@ if (empty($_SESSION['user_id'])) {
                 });
             });
         </script>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = array(
+                "id" => $_POST["id"],
+                "nome" => $_POST['nome'],
+                "cognome" => $_POST['cognome'],
+                "SIDI" => $_POST['SIDI'],
+                "telefono" => $_POST['telefono'],
+            );
+
+            $res = updateAlunno($data);
+
+            if ($res == 1) {
+                echo '<script>window . location . replace(
+            "http://localhost/DiarioProf/frontend/pages/archivioAlunni.php"
+            );</script>';
+            }
+        }
+        ?>
 
         <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
