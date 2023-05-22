@@ -12,9 +12,11 @@ if (empty($_SESSION['user_id'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Diario | Aggiungi docente</title>
+    <link rel="stylesheet" href="../assets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
@@ -27,7 +29,8 @@ if (empty($_SESSION['user_id'])) {
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Codice Fiscale</label>
-            <input class="form-control" type="text" onkeyup="this.value = this.value.toUpperCase();" id=" CF" placeholder="CF" name="CF" maxlength="16" required>
+            <input class="form-control" type="text" onkeyup="this.value = this.value.toUpperCase();" id=" CF"
+                placeholder="CF" name="CF" maxlength="16" required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nome docente</label>
@@ -35,25 +38,27 @@ if (empty($_SESSION['user_id'])) {
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cognome docente</label>
-            <input class="form-control" type="text" id="cognome" placeholder="cognome" name="cognome" maxlength="50" required>
+            <input class="form-control" type="text" id="cognome" placeholder="cognome" name="cognome" maxlength="50"
+                required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Telefono docente</label>
-            <input class="form-control" type="text" id="telefono" placeholder="telefono" name="telefono" maxlength="10" required>
+            <input class="form-control" type="text" id="telefono" placeholder="telefono" name="telefono" maxlength="10"
+                required>
         </div>
         <button type="submit" class="btn btn-primary" name="login">Conferma</button>
 
         <script type="text/javascript">
-            $('#telefono').keypress(function(e) {
-                var arr = [];
-                var kk = e.which;
+        $('#telefono').keypress(function(e) {
+            var arr = [];
+            var kk = e.which;
 
-                for (i = 48; i < 58; i++)
-                    arr.push(i);
+            for (i = 48; i < 58; i++)
+                arr.push(i);
 
-                if (!(arr.indexOf(kk) >= 0))
-                    e.preventDefault();
-            });
+            if (!(arr.indexOf(kk) >= 0))
+                e.preventDefault();
+        });
         </script>
 
         <?php
@@ -82,7 +87,8 @@ if (empty($_SESSION['user_id'])) {
     </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 </body>
 

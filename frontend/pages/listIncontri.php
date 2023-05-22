@@ -12,6 +12,7 @@ if (empty($_SESSION['user_id'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Corsi per tipologia</title>
+    <link rel="stylesheet" href="../assets/style.css">
     <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
