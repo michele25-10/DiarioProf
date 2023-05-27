@@ -51,7 +51,14 @@ SIDI				varchar(20) null,
 CF 					varchar(16) not null primary key,
 nome				varchar (30) not null,
 cognome				varchar(30) not null,
-telefono			varchar(10) not null
+telefono			varchar(10) not null,
+id_menu				int null
+);
+
+create table menu(
+id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY key,
+tipologia varchar(50) not null,
+descrizione varchar(200) not null
 );
 
 create table docente(
