@@ -161,6 +161,18 @@ error_reporting(0);
                         );
                         break;
                 };
+
+                $("select")
+                    .on("change", function() {
+                        $("select option:selected").each(function() {
+                            $('select option').prop('disabled', false);
+                            for (var i = 1; i < 10; i++) {
+                                var str = $("[name=alunno" + i + "] option:selected").val();
+                                $('select option[value=' + str + ']').prop('disabled', true);
+                            }
+                        });
+                    })
+                    .trigger("change");
             </script>
         <?php elseif ($list_studenti != -1) : ?>
             <table id="example2" class="display" style="width:100%">
