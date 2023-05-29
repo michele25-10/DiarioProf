@@ -7,11 +7,14 @@
     <title>Informazione Corso</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
-    <?php
+
+    <?php require_once(__DIR__ . '/../pages/navbar.php');
+
     if (!empty($_POST['submit'])) {
         $stringa = $_POST['submit'];
         $stringa_esplosa = explode(" ", $stringa);
@@ -58,9 +61,12 @@
                         for ($x = 1; $x < 7; $x++) {
                             $res = addAlunnoToCorso($id_corso, $_POST["alunno" . $x]);
                         }
+
+                        echo '<script>window . location . replace(
+                            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';
                     }
                 } else {
-                    echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati inseriti tutti gli alunni.
+                    echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati compilati tutti i campi dati necessari.
                     </div></div>';
                 }
                 break;
@@ -94,36 +100,19 @@
                         for ($x = 1; $x < 10; $x++) {
                             $res = addAlunnoToCorso($id_corso, $_POST["alunno" . $x]);
                         }
+
+                        echo '<script>window . location . replace(
+            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';
                     }
                 } else {
 
-                    echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati inseriti tutti gli alunni.
+                    echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati compilati tutti i campi dati necessari.
                         </div></div>';
                 }
                 break;
         }
-
-        /*echo '<script>window . location . replace(
-            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';*/
     }
     ?>
 </body>
-<style>
-    #pageloader {
-        background: rgba(255, 255, 255, 0.8);
-        height: 100%;
-        position: fixed;
-        width: 100%;
-        z-index: 9999;
-    }
-
-    #spinner {
-        left: 50%;
-        margin-left: -32px;
-        margin-top: -32px;
-        position: absolute;
-        top: 50%;
-    }
-</style>
 
 </html>
