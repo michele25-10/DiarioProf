@@ -12,11 +12,11 @@
 </head>
 
 <body>
-    <div id="pageloader">
+    <!--<div id="pageloader">
         <div class="spinner-border text-primary" id="spinner" role="status">
             <span class="visually-hidden"></span>
         </div>
-    </div>
+    </div>-->
     <?php
     if (!empty($_POST['submit'])) {
         $stringa = $_POST['submit'];
@@ -24,6 +24,8 @@
         $id_corso = $stringa_esplosa[0];
         $nome_corso = explode("_", $stringa_esplosa[1]);
         $tipologia = $nome_corso[1];
+
+        var_dump($_POST); 
 
         include_once dirname(__FILE__) . '\..\function\iscrizione.php';
 
@@ -49,8 +51,8 @@
                 break;
         }
 
-        echo '<script>window . location . replace(
-            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';
+        /*echo '<script>window . location . replace(
+            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';*/
     }
     ?>
 </body>
