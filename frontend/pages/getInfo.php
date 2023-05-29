@@ -23,7 +23,8 @@ error_reporting(0);
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
@@ -45,154 +46,167 @@ error_reporting(0);
     <h2>Informazioni di ' . ($_GET['nome_corso']) . '</h2>');
         ?>
         <?php if ($list_corsi != -1) : ?>
-            <div style="overflow: auto; overflow-y: hidden ">
-                <table id="example" class="display">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Note</th>
-                            <th>Aula</th>
-                            <th>View More</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($list_corsi as $row) : ?>
-                            <tr>
-                                <td><?php echo $row['data_inizio'] ?></td>
-                                <td><?php echo $row['note'] ?></td>
-                                <td><?php echo $row['aula'] ?></td>
-                                <td>
-                                    <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['id_incontro'] ?>)">Edit</button>
-                                    <button class="btn btn-secondary me-3" onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';" <?php if ($list_studenti == -1) {
+        <div style="overflow: auto; overflow-y: hidden ">
+            <table id="example" class="display">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Note</th>
+                        <th>Aula</th>
+                        <th>View More</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($list_corsi as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['data_inizio'] ?></td>
+                        <td><?php echo $row['note'] ?></td>
+                        <td><?php echo $row['aula'] ?></td>
+                        <td>
+                            <button id="edit" class="btn btn-primary me-3" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onclick="onClick(<?php echo $row['id_incontro'] ?>)">Edit</button>
+                            <button class="btn btn-secondary me-3"
+                                onclick="window.location.href='presenze.php?id_incontro=<?php echo $row['id_incontro'] ?>&nome_corso=<?php echo $_GET['nome_corso'] ?>';"
+                                <?php if ($list_studenti == -1) {
                                                                                                                                                                                                                             echo "disabled";
                                                                                                                                                                                                                         } ?>>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
-                                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z" />
+                                    <path
+                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+                                    <path
+                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
         <?php endif ?>
     </div>
 
     <div class="container mt-5 mb-5">
         <?php if ($list_studenti == -1) : ?>
-            <?php
+        <?php
             include_once dirname(__FILE__) . '\..\function\alunno.php';
 
             $list_al = getArchieveAlunni();
             ?>
-            <form method="post" action="../function/postAlunni.php">
-                <fieldset>
-                    <h2>Iscritti:</h2>
-                    <div class="row mt-1 mb-3">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Alunno:</label>
-                            <select class="form-select" aria-label="Default select example" name="alunno1" id="alunno1" required>
-                                <option selected disabled>Alunni</option>
-                                <?php foreach ($list_al as $row) :
+        <form method="post" action="../function/postAlunni.php">
+            <fieldset>
+                <h2>Iscritti:</h2>
+                <div class="row mt-1 mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Alunno:</label>
+                        <select class="form-select" aria-label="Default select example" name="alunno1" id="alunno1"
+                            required>
+                            <option selected disabled>Alunni</option>
+                            <?php foreach ($list_al as $row) :
                                 ?>
-                                    <option value="<?php echo $row['CF']
+                            <option value="<?php echo $row['CF']
                                                     ?>">
-                                        <?php echo ($row['nome'] . " " . $row['cognome'])
+                                <?php echo ($row['nome'] . " " . $row['cognome'])
                                         ?></option>
-                                <?php endforeach
+                            <?php endforeach
                                 ?>
-                            </select>
-                        </div>
-                        <div id="alunni-typeB">
-
-                        </div>
-                        <div id="alunni-typeC">
-
-                        </div>
+                        </select>
                     </div>
-                    <input type="button" data-bs-toggle="modal" data-bs-target="#inviaCorso" class="btn btn-primary mb-5" value="Invia" />
-                    <div class="modal fade" id="inviaCorso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Premendo questo tasto si inseriranno gli alunni all'interno del database.
-                                    Una volta inseriti non sarà possibile modificarli.
-                                    Inserite gli alunni quando avrete la certezza che tutti quanti possano partecipare.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submit" class="btn btn-danger" value="<?php echo $_GET['id'] . " " . $_GET['nome_corso'] ?>">Accetto</button>
-                                </div>
+                    <div id="alunni-typeB">
+
+                    </div>
+                    <div id="alunni-typeC">
+
+                    </div>
+                </div>
+                <input type="button" data-bs-toggle="modal" data-bs-target="#inviaCorso" class="btn btn-primary mb-5"
+                    value="Invia" />
+                <div class="modal fade" id="inviaCorso" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Premendo questo tasto si inseriranno gli alunni all'interno del database.
+                                Una volta inseriti non sarà possibile modificarli.
+                                Inserite gli alunni quando avrete la certezza che tutti quanti possano partecipare.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" class="btn btn-danger"
+                                    value="<?php echo $_GET['id'] . " " . $_GET['nome_corso'] ?>">Accetto</button>
                             </div>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-            <script type="text/javascript">
-                //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
-                var stringa = '<?php echo $_GET['nome_corso']; ?>';
-                var split = stringa.split('_');
-                var tipologia = split[1];
-                console.log(tipologia);
-                switch (tipologia) {
-                    case "A":
-                        $("#form-alunni-typeB").remove();
-                        $("#form-alunni-typeC").remove();
-                        break;
+                </div>
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+        //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
+        var stringa = '<?php echo $_GET['nome_corso']; ?>';
+        var split = stringa.split('_');
+        var tipologia = split[1];
+        console.log(tipologia);
+        switch (tipologia) {
+            case "A":
+                $("#form-alunni-typeB").remove();
+                $("#form-alunni-typeC").remove();
+                break;
 
-                    case "B":
-                        $('#alunni-typeB').html(
-                            '<div id="form-alunni-typeB"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" id="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" id="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" id="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" id="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" id="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
-                        );
-                        $("#form-alunni-typeC").remove();
-                        break;
+            case "B":
+                $('#alunni-typeB').html(
+                    '<div id="form-alunni-typeB"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" id="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" id="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" id="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" id="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" id="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                );
+                $("#form-alunni-typeC").remove();
+                break;
 
-                    case "C":
-                        $("#form-alunni-typeB").remove();
-                        $('#alunni-typeC').html(
-                            '<div id="form-alunni-typeC"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" id="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" id="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" id="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" id="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" id="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno7" id="alunno7" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno8" id="alunno8" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno9" id="alunno9" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
-                        );
-                        break;
-                };
+            case "C":
+                $("#form-alunni-typeB").remove();
+                $('#alunni-typeC').html(
+                    '<div id="form-alunni-typeC"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" id="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" id="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" id="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" id="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" id="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno7" id="alunno7" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno8" id="alunno8" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno9" id="alunno9" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                );
+                break;
+        };
 
-                $("select")
-                    .on("change", function() {
-                        $("select option:selected").each(function() {
-                            $('select option[value=Alunni]').prop('disabled', false);
-                            for (var i = 1; i < 10; i++) {
-                                var str = $("#alunno" + i + " option:selected").val();
-                                $('select option[value=' + str + ']').prop('disabled', true);
-                            }
-                        });
-                    })
-                    .trigger("change");
-            </script>
+        $("select")
+            .on("change", function() {
+                $("select option:selected").each(function() {
+                    $('select option[value=Alunni]').prop('disabled', false);
+                    for (var i = 1; i < 10; i++) {
+                        var str = $("#alunno" + i + " option:selected").val();
+                        $('select option[value=' + str + ']').prop('disabled', true);
+                    }
+                });
+            })
+            .trigger("change");
+        </script>
         <?php elseif ($list_studenti != -1) : ?>
-            <table id="example2" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Cognome</th>
-                        <th>CF</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($list_studenti as $row) : ?>
-                        <tr>
-                            <td><?php echo $row['nome'] ?></td>
-                            <td><?php echo $row['cognome'] ?></td>
-                            <td><?php echo $row['CF'] ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+        <table id="example2" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>CF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($list_studenti as $row) : ?>
+                <tr>
+                    <td><?php echo $row['nome'] ?></td>
+                    <td><?php echo $row['cognome'] ?></td>
+                    <td><?php echo $row['CF'] ?></td>
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
     </div>
 
     <div class="container mb-5">
@@ -216,14 +230,15 @@ error_reporting(0);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger" onclick="terminaCorso(<?php echo $id ?>)">Accetto</button>
+                    <button type="button" class="btn btn-danger"
+                        onclick="terminaCorso(<?php echo $id ?>)">Accetto</button>
                 </div>
             </div>
         </div>
     </div>
-<?php endif ?>
+    <?php endif ?>
 
-<script>
+    <script>
     const ctx = document.getElementById('myChart');
 
     let endpoint = 'http://localhost/diarioProf/backend/API/iscrizione/getNumeroPresenze.php?id_corso=' +
@@ -280,46 +295,48 @@ error_reporting(0);
             }
         });
     });
-</script>
+    </script>
 
-<div class=" modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="nome_corso"></h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" id="form">
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Data inizio:</label>
-                        <input type="datetime-local" class="form-control" id="data_inizio" name="data_inizio">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Note:</label>
-                        <textarea class="form-control" id="note" name="note" maxlength="199"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Aula:</label>
-                        <select class="form-select" aria-label="Default select example" id="aula" name="aula" required>
-                            <option selected disabled>Aula:</option>
-                            <?php foreach ($list_aule as $row) : ?>
+    <div class=" modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="nome_corso"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="form">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Data inizio:</label>
+                            <input type="datetime-local" class="form-control" id="data_inizio" name="data_inizio">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Note:</label>
+                            <textarea class="form-control" id="note" name="note" maxlength="199"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Aula:</label>
+                            <select class="form-select" aria-label="Default select example" id="aula" name="aula"
+                                required>
+                                <option selected disabled>Aula:</option>
+                                <?php foreach ($list_aule as $row) : ?>
                                 <option value="<?php echo $row['id'] ?>">
                                     <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="id" name="id">Invia</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="id" name="id">Invia</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
+        <script>
         function terminaCorso(id) {
             let endpoint = 'http://localhost/diarioProf/backend/API/corso/terminaCorso.php?id_corso=' + id
             $.get(endpoint, function(data, status) {
@@ -363,9 +380,9 @@ error_reporting(0);
                 form.submit();
             }
         });
-    </script>
+        </script>
 
-    <?php
+        <?php
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = array(
@@ -384,22 +401,23 @@ error_reporting(0);
     }
     ?>
 
-    <script>
+        <script>
         $(document).ready(function() {
             $('#example').DataTable({});
         });
-    </script>
+        </script>
 
 
-    <script>
+        <script>
         $(document).ready(function() {
             $('#example2').DataTable({});
         });
-    </script>
+        </script>
 
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
