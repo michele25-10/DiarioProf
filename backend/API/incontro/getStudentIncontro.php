@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once dirname(__FILE__) . '/../../COMMON/connect.php';
 include_once dirname(__FILE__) . '/../../MODEL/incontro.php';
 
-if (!isset($_GET['data']) || ($data = explode("?data=", $_SERVER['REQUEST_URI'])[1]) == null){
+if (!isset($_GET['data']) || ($data = explode("?data=", $_SERVER['REQUEST_URI'])[1]) == null) {
     http_response_code(400);
     echo json_encode(["message" => "Non ci sono abbastanza campi per la ricerca"]);
     die();
@@ -18,7 +18,7 @@ $incontro = new Incontro($conn);
 $array = explode("%20", $data);
 $date = $array[0];
 $ora = $array[1];
-$query = $incontro->getStudentsIncontro($date,$ora);
+$query = $incontro->getStudentsIncontro($date, $ora);
 $result = $conn->query($query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -28,6 +28,7 @@ if (mysqli_num_rows($result) > 0) {
         $inc_arr = array(
             'nome' => $nome,
             'cognome' => $cognome,
+            'menu' => $menu
         );
         array_push($incs_arr, $inc_arr);
     }

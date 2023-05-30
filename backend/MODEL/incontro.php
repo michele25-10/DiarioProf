@@ -82,11 +82,12 @@ class Incontro
 
     function getStudentsIncontro($date, $ora)
     {
-        $sql = " SELECT a.nome, a.cognome 
+        $sql = " SELECT a.nome, a.cognome,if(a.id_menu is null or a.id_menu = '-1', 'Classico', m.tipologia) as 'menu'
        FROM alunno a 
        inner join iscrizione i on a.CF = i.id_alunno 
        inner join corso c on i.id_corso = c.id 
        inner join incontro i2 on c.id = i2.id_corso 
+       left join menu m on m.id = a.id_menu
     where (i2.data_inizio ='" . $date . "-" . $ora . "');";
         return $sql;
     }

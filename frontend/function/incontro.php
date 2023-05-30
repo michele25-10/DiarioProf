@@ -223,6 +223,7 @@ function getStudentsIncontro($date)
                 $incontri_record = array(
                     'nome' => $incontri['nome'],
                     'cognome' => $incontri['cognome'],
+                    'menu' => $incontri['menu'],
                 );
                 array_push($inc_arr, $incontri_record);
             }

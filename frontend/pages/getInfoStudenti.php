@@ -40,6 +40,7 @@ if (empty($_SESSION['user_id'])) {
                     <tr>
                         <th>Nome</th>
                         <th>Cognome</th>
+                        <th>Menu</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,9 @@ if (empty($_SESSION['user_id'])) {
                             <td>
                                 <?php echo $row['cognome'] ?>
                             </td>
+                            <td>
+                                <?php echo $row['menu'] ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -58,6 +62,7 @@ if (empty($_SESSION['user_id'])) {
                     <tr>
                         <th>Nome</th>
                         <th>Cognome</th>
+                        <th>Menu</th>
                     </tr>
                 </tfoot>
             </table>
