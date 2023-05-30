@@ -19,6 +19,7 @@
         $stringa = $_POST['submit'];
         $stringa_esplosa = explode(" ", $stringa);
         $id_corso = $stringa_esplosa[0];
+        $nomeCorso = $stringa_esplosa[1];
         $nome_corso = explode("_", $stringa_esplosa[1]);
         $tipologia = $nome_corso[1];
 
@@ -30,6 +31,11 @@
             case 'A':
                 if (!empty($_POST['alunno1'])) {
                     $res = addAlunnoToCorso($id_corso, $_POST["alunno1"]);
+                    echo '<script>window . location . replace(
+                            "http://localhost/DiarioProf/frontend/pages/getinfo.php?id=' . $id_corso . '&nome_corso=' . $nomeCorso . '");</script>';
+                } else {
+                    echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati compilati tutti i campi dati necessari.
+                    </div></div>';
                 }
                 break;
             case 'B':
@@ -63,7 +69,7 @@
                         }
 
                         echo '<script>window . location . replace(
-                            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';
+                            "http://localhost/DiarioProf/frontend/pages/getinfo.php?id=' . $id_corso . '&nome_corso=' . $nomeCorso . '");</script>';
                     }
                 } else {
                     echo '<div class="container mt-5"><div class="alert alert-danger" role="alert">Non sono stati compilati tutti i campi dati necessari.
@@ -100,9 +106,8 @@
                         for ($x = 1; $x < 10; $x++) {
                             $res = addAlunnoToCorso($id_corso, $_POST["alunno" . $x]);
                         }
-
                         echo '<script>window . location . replace(
-            "http://localhost/DiarioProf/frontend/pages/homepage.php");</script>';
+                            "http://localhost/DiarioProf/frontend/pages/getinfo.php?id=' . $id_corso . '&nome_corso=' . $nomeCorso . '");</script>';
                     }
                 } else {
 
