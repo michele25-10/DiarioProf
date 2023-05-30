@@ -2,11 +2,6 @@ Modifiche
 -Controllo che non si inseriscano due incontri nella stessa data
 -menu --> spiegare meglio
 -Invio della mail al docente che ha il corso
--Possibilità di dover recuperare incontro 
--controllo che non ci siano due alunni uguali nello stesso incontro
 -Elenco studenti con colonna numerica default 0 che indica il rischio di dispersione.
--Pagina per visualizzare elenco degli studenti con bottone info per modificare.
--Logo --> bianco
--Inserire un log con variazione date e corso
 
 
