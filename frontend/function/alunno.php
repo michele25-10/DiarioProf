@@ -15,7 +15,8 @@ function getArchieveAlunni()
                     'CF' => $al['CF'],
                     'nome' => $al['nome'],
                     'cognome' => $al['cognome'],
-                    'telefono' => $al['telefono']
+                    'telefono' => $al['telefono'],
+                    'menu' => $al['menu'],
                 );
                 array_push($al_arr, $al_record);
             }

@@ -34,6 +34,7 @@ if (empty($_SESSION['user_id'])) {
                     <th>Cognome</th>
                     <th>SIDI</th>
                     <th>Telefono</th>
+                    <th>Menù</th>
                     <th>Opzioni</th>
                 </tr>
             </thead>
@@ -44,8 +45,9 @@ if (empty($_SESSION['user_id'])) {
                         <td><?php echo ($row['cognome']) ?></td>
                         <td><?php echo ($row['SIDI']) ?></td>
                         <td><?php echo ($row['telefono']) ?></td>
+                        <td><?php echo $row['menu']; ?></td>
                         <td>
-                            <button id="edit" class="btn btn-primary me-1 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick(<?php echo $row['CF'] ?>)">Edit</button>
+                            <button id="edit" class="btn btn-primary me-1 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="onClick('<?php echo $row['CF'] ?>')">Edit</button>
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -56,6 +58,7 @@ if (empty($_SESSION['user_id'])) {
                     <th>Cognome</th>
                     <th>SIDI</th>
                     <th>Telefono</th>
+                    <th>Menù</th>
                     <th>Opzioni</th>
                 </tr>
             </tfoot>
@@ -100,6 +103,7 @@ if (empty($_SESSION['user_id'])) {
             function onClick(CF) {
                 let endpoint = 'http://localhost/diarioProf/backend/API/alunno/getAlunnoByCF.php?CF=' + CF
                 $.get(endpoint, function(data, status) {
+                    console.log(data);
                     $('#nome').val(data[0][
                         'nome'
                     ]);

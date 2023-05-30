@@ -28,6 +28,7 @@ if (mysqli_num_rows($result) > 0) {
             'cognome' => $cognome,
             'SIDI' => $SIDI,
             'telefono' => $telefono,
+            'menu' => $menu,
         );
         array_push($als_arr, $al_arr);
     }
