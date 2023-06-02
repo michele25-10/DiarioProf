@@ -6,7 +6,7 @@ header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->id) || empty($data->nome) || empty($data->cognome) || empty($data->SIDI) || empty($data->telefono || empty($data->menu))) {
+if (empty($data->id) || empty($data->nome) || empty($data->cognome) || empty($data->SIDI) || empty($data->telefono) || empty($data->menu)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();

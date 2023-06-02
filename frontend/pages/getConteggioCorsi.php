@@ -22,6 +22,9 @@ if (empty($_SESSION['user_id'])) {
 <body>
     <?php require_once(__DIR__ . '\navbar.php');
     include_once dirname(__FILE__) . '\..\function\corsi.php';
+    $A = countCorsoByType("A");
+    $B = countCorsoByType("B");
+    $C = countCorsoByType("C");
     ?>
 
 
@@ -37,17 +40,17 @@ if (empty($_SESSION['user_id'])) {
             <tbody>
                 <tr>
                     <td> A</td>
-                    <td> <?php echo "<b>" . countCorsoByType("A") . "</b>"; ?>/120
+                    <td> <?php echo "<b>" . $A . "</b>"; ?>/120
                     </td>
                 </tr>
                 <tr>
                     <td>B</td>
-                    <td> <?php echo "<b>" . countCorsoByType("B") . "</b>"; ?>/43
+                    <td> <?php echo "<b>" . $B . "</b>"; ?>/43
                     </td>
                 </tr>
                 <tr>
                     <td>C</td>
-                    <td> <?php echo "<b>" . countCorsoByType("C") . "</b>"; ?>/16
+                    <td> <?php echo "<b>" . $C . "</b>"; ?>/16
                     </td>
                 </tr>
             </tbody>
