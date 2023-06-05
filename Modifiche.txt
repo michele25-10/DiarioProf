@@ -1,5 +1,4 @@
 Modifiche
--Controllo che non si inseriscano due incontri nella stessa data
 -Elenco studenti con colonna numerica default 0 che indica il rischio di dispersione.
 
 

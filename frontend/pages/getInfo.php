@@ -25,6 +25,8 @@ error_reporting(0);
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet”>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -154,7 +156,6 @@ error_reporting(0);
         var stringa = '<?php echo $_GET['nome_corso']; ?>';
         var split = stringa.split('_');
         var tipologia = split[1];
-        console.log(tipologia);
         switch (tipologia) {
             case "A":
                 $("#form-alunni-typeB").remove();
@@ -309,7 +310,12 @@ error_reporting(0);
                     <form method="post" id="form">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Data inizio:</label>
-                            <input type="datetime-local" class="form-control" id="data_inizio" name="data_inizio">
+                            <input type="text" class="form-control" id="data_inizio" name="data_inizio"
+                                autocomplet="off" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ora inizio:</label>
+                            <input type="time" class="form-control" id="ora_inizio" name="ora_inizio" required>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Note:</label>
@@ -319,7 +325,7 @@ error_reporting(0);
                             <label class="form-label">Aula:</label>
                             <select class="form-select" aria-label="Default select example" id="aula" name="aula"
                                 required>
-                                <option selected disabled>Aula:</option>
+                                <option disabled>Aula:</option>
                                 <?php foreach ($list_aule as $row) : ?>
                                 <option value="<?php echo $row['id'] ?>">
                                     <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
@@ -336,6 +342,64 @@ error_reporting(0);
             </div>
         </div>
 
+        <!-- CDN del datepicker -->
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
+            integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"
+            integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../function/bootstrap_datepicker.it.js" charset="UTF-8"></script>
+
+        <script type="text/javascript">
+        $(window).on("load", function() {
+            let endpoint = 'http://localhost/diarioProf/backend/API/corso/getInfoCorsoDate.php?id=' +
+                <?php echo $_GET['id']; ?>;
+            $.get(endpoint, function(data, status) {
+                var stringa = '<?php echo $_GET['nome_corso']; ?>';
+                var split = stringa.split('_');
+                var tipologia = split[1];
+                var tmp;
+                var str;
+                if (tipologia == 'A') {
+                    var incontri = [data[0]['data_inizio'], data[1]['data_inizio'], data[2][
+                            'data_inizio'
+                        ],
+                        data[3]['data_inizio'], data[4]['data_inizio'],
+                    ];
+                    for (var i = 0; i < 5; i++) {
+                        str = incontri[i];
+                        tmp = str.split(' ');
+                        incontri[i] = tmp[0];
+                    }
+                } else {
+                    var incontri = [data[0]['data_inizio'], data[1]['data_inizio'], data[2][
+                            'data_inizio'
+                        ],
+                        data[3]['data_inizio'],
+                    ];
+                    for (var i = 0; i < 4; i++) {
+                        str = incontri[i];
+                        tmp = str.split(' ');
+                        incontri[i] = tmp[0];
+                    }
+                }
+
+                $('#data_inizio').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    datesDisabled: incontri,
+                    language: 'it',
+                    daysOfWeekDisabled: "0", //disabilita la domenica
+                    todayHighlight: true, // Highlight the current date
+                    defaultViewDate: "1"
+                });
+            });
+        });
+        </script>
+
         <script>
         function terminaCorso(id) {
             let endpoint = 'http://localhost/diarioProf/backend/API/corso/terminaCorso.php?id_corso=' + id
@@ -349,9 +413,10 @@ error_reporting(0);
             let endpoint = 'http://localhost/diarioProf/backend/API/incontro/getIncontriById.php?id=' + id
             $.get(endpoint, function(data, status) {
                 //Viene inserito negli input del form i contenuti degli incontri con quell'ID
-                $('#data_inizio').val(data[0][
-                    'data_inizio'
-                ]);
+                var str = data[0]['data_inizio'];
+                var split = str.split(' ');
+                $('#data_inizio').val(split[0]);
+                $('#ora_inizio').val(split[1]);
                 $('#note').val(data[0][
                     'note'
                 ]);
@@ -364,30 +429,15 @@ error_reporting(0);
                 $('#aula option[value=' + data[0]['id_aula'] + ']').prop('selected', true);
             });
         };
-
-        $("#form").validate({
-            rules: {
-                'data_inizio': {
-                    required: true,
-                },
-            },
-            messages: {
-                'data_inizio': {
-                    required: "Il campo è obbligatorio",
-                },
-            },
-            submitHandler: function(form) {
-                form.submit();
-            }
-        });
         </script>
 
         <?php
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data_inizio = $_POST['data_inizio'] . " " . $_POST['ora_inizio'];
         $data = array(
             "id" => $_POST["id"],
-            "data_inizio" => $_POST['data_inizio'],
+            "data_inizio" => $data_inizio,
             "note" => $_POST['note'],
             "id_aula" => $_POST['aula'],
         );
