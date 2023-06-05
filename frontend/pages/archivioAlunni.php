@@ -31,43 +31,46 @@ if (empty($_SESSION['user_id'])) {
 
     <div class="container mt-5">
         <h2>Archivio degli alunni:</h2>
-        <table id="example" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>SIDI</th>
-                    <th>Telefono</th>
-                    <th>Menù</th>
-                    <th>Opzioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($list as $row) : ?>
-                <tr>
-                    <td><?php echo ($row['nome']) ?></td>
-                    <td><?php echo ($row['cognome']) ?></td>
-                    <td><?php echo ($row['SIDI']) ?></td>
-                    <td><?php echo ($row['telefono']) ?></td>
-                    <td><?php echo $row['menu']; ?></td>
-                    <td>
-                        <button id="edit" class="btn btn-primary me-1 mb-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" onclick="onClick('<?php echo $row['CF'] ?>')">Edit</button>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>SIDI</th>
-                    <th>Telefono</th>
-                    <th>Menù</th>
-                    <th>Opzioni</th>
-                </tr>
-            </tfoot>
-        </table>
+        <div style="overflow: auto; overflow-y: hidden">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>SIDI</th>
+                        <th>Telefono</th>
+                        <th>Menù</th>
+                        <th>Opzioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($list as $row) : ?>
+                    <tr>
+                        <td><?php echo ($row['nome']) ?></td>
+                        <td><?php echo ($row['cognome']) ?></td>
+                        <td><?php echo ($row['SIDI']) ?></td>
+                        <td><?php echo ($row['telefono']) ?></td>
+                        <td><?php echo $row['menu']; ?></td>
+                        <td>
+                            <button id="edit" class="btn btn-primary me-1 mb-2" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onclick="onClick('<?php echo $row['CF'] ?>')">Edit</button>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>SIDI</th>
+                        <th>Telefono</th>
+                        <th>Menù</th>
+                        <th>Opzioni</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 
     <div class=" modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
@@ -171,32 +174,32 @@ if (empty($_SESSION['user_id'])) {
         </script>
 
         <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if ($_POST['menu'] == "Classico") {
-                $menu = "-1";
-            } else {
-                $menu = $_POST['menu'];
-            }
+                if ($_POST['menu'] == "Classico") {
+                    $menu = "-1";
+                } else {
+                    $menu = $_POST['menu'];
+                }
 
-            $data = array(
-                "id" => $_POST["id"],
-                "nome" => $_POST['nome'],
-                "cognome" => $_POST['cognome'],
-                "SIDI" => $_POST['SIDI'],
-                "telefono" => $_POST['telefono'],
-                "menu" => $menu
-            );
+                $data = array(
+                    "id" => $_POST["id"],
+                    "nome" => $_POST['nome'],
+                    "cognome" => $_POST['cognome'],
+                    "SIDI" => $_POST['SIDI'],
+                    "telefono" => $_POST['telefono'],
+                    "menu" => $menu
+                );
 
-            $res = updateAlunno($data);
+                $res = updateAlunno($data);
 
-            if ($res == 1) {
-                echo '<script>window . location . replace(
+                if ($res == 1) {
+                    echo '<script>window . location . replace(
             "http://localhost/DiarioProf/frontend/pages/archivioAlunni.php"
             );</script>';
+                }
             }
-        }
-        ?>
+            ?>
 
         <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

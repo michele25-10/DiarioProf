@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (empty($_SESSION['user_id'])) {
-    header('location: ../index.php');
-}
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -15,8 +8,11 @@ if (empty($_SESSION['user_id'])) {
     <link rel="stylesheet" href="../assets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -35,9 +31,11 @@ if (empty($_SESSION['user_id'])) {
     $list_aule = getArchieveAule();
     ?>
 
+
     <div class="container mt-5">
         <div class="progress mb-5">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
+                aria-valuemax="100"></div>
         </div>
         <form id="regiration_form" method="post">
             <fieldset>
@@ -45,7 +43,8 @@ if (empty($_SESSION['user_id'])) {
                 <div class="row mt-1">
                     <div class="col-md-6">
                         <label class="form-label">Tipologia del corso:<span id="obbligatorio"> *</span></label>
-                        <select class="form-select" aria-label="Default select example" name="tipologia" id="tipologia" required>
+                        <select class="form-select" aria-label="Default select example" name="tipologia" id="tipologia"
+                            required>
                             <option selected disabled>Tipologia del corso:</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -57,8 +56,8 @@ if (empty($_SESSION['user_id'])) {
                         <select class="form-select" aria-label="Default select example" name="id_quadrimestre" required>
                             <option selected disabled>Quadrimestre:</option>
                             <?php foreach ($list_quad as $row) : ?>
-                                <option value="<?php echo $row['id'] ?>">
-                                    <?php echo ($row['data_inizio'] . " " . $row['data_fine']) ?></option>
+                            <option value="<?php echo $row['id'] ?>">
+                                <?php echo ($row['data_inizio'] . " " . $row['data_fine']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -67,8 +66,8 @@ if (empty($_SESSION['user_id'])) {
                         <select class="form-select" aria-label="Default select example" name="id_docente" required>
                             <option selected disabled>Docente:</option>
                             <?php foreach ($list_doc as $row) : ?>
-                                <option value="<?php echo $row['CF'] ?>">
-                                    <?php echo ($row['nome'] . " " . $row['cognome']) ?></option>
+                            <option value="<?php echo $row['CF'] ?>">
+                                <?php echo ($row['nome'] . " " . $row['cognome']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -107,52 +106,53 @@ if (empty($_SESSION['user_id'])) {
                 <div class="row mt-1">
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Primo incontro <span id="obbligatorio"> *</span></label>
-                        <input type="datetime-local" class="form-control" name="incontro1" id="fName">
+                        <input type="datetime-local" class="form-control datepicker" name="incontro1" id="incontro1"
+                            data-provide="datepicker">
                         <label class="form-label">Aula: <span id="obbligatorio"> *</span></label>
                         <select class="form-select" aria-label="Default select example" name="aula1" required>
                             <option selected disabled>Aula:</option>
                             <?php foreach ($list_aule as $row) : ?>
-                                <option value="<?php echo $row['id'] ?>">
-                                    <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
+                            <option value="<?php echo $row['id'] ?>">
+                                <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
                     <hr>
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Secondo incontro <span id="obbligatorio"> *</span></label>
-                        <input type="datetime-local" class="form-control" name="incontro2" id="fName">
+                        <input type="datetime-local" class="form-control" name="incontro2" id="incontro2">
                         <label class="form-label">Aula: <span id="obbligatorio"> *</span></label>
                         <select class="form-select" aria-label="Default select example" name="aula2" required>
                             <option selected disabled>Aula:</option>
                             <?php foreach ($list_aule as $row) : ?>
-                                <option value="<?php echo $row['id'] ?>">
-                                    <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
+                            <option value="<?php echo $row['id'] ?>">
+                                <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
                     <hr>
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Terzo incontro <span id="obbligatorio"> *</span></label>
-                        <input type="datetime-local" class="form-control" name="incontro3" id="fName">
+                        <input type="datetime-local" class="form-control" name="incontro3" id="incontro3">
                         <label class="form-label">Aula: <span id="obbligatorio"> *</span></label>
                         <select class="form-select" aria-label="Default select example" name="aula3" required>
                             <option selected disabled>Aula:</option>
                             <?php foreach ($list_aule as $row) : ?>
-                                <option value="<?php echo $row['id'] ?>">
-                                    <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
+                            <option value="<?php echo $row['id'] ?>">
+                                <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
                     <hr>
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Quarto incontro <span id="obbligatorio"> *</span></label>
-                        <input type="datetime-local" class="form-control" name="incontro4" id="fName">
+                        <input type="datetime-local" class="form-control" name="incontro4" id="incontro4">
                         <label class="form-label">Aula: <span id="obbligatorio"> *</span></label>
                         <select class="form-select" aria-label="Default select example" name="aula4" required>
                             <option selected disabled>Aula:</option>
                             <?php foreach ($list_aule as $row) : ?>
-                                <option value="<?php echo $row['id'] ?>">
-                                    <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
+                            <option value="<?php echo $row['id'] ?>">
+                                <?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -197,223 +197,108 @@ if (empty($_SESSION['user_id'])) {
     </div>
 
     <script>
-        //Prende i valori che vengono selezionati nella tipologia del corso, per effettuare controlli in seguito.
-        $("#tipologia")
-            .change(function() {
-                $("#tipologia option:selected").each(function() {
-                    var str = $(this).text();
-                    //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
-                    switch (str) {
-                        case "A":
-                            $("#html").remove();
-                            $('#form-typeA').html(
-                                '<div id="typeA"><label class="form-label">Quinto incontro <span id="obbligatorio"> *</span></label><input type="datetime-local" class="form-control" name="incontro5" id="fName"><label class="form-label">Aula: <span id="obbligatorio"> *</span></label><select class="form-select" aria-label="Default select example" name="aula5" required><option selected disabled>Aula:</option><?php foreach ($list_aule as $row) : ?><option value="<?php echo $row['id'] ?>"><?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option><?php endforeach ?></select></div>'
-                            );
-                            //$("#form-alunni-typeB").remove();
-                            //$("#form-alunni-typeC").remove();
-                            break;
+    /*const incontro = new Array();
 
-                        case "B":
-                            $("#html").remove();
-                            $("#typeA").remove();
-                            /*$('#alunni-typeB').html(
-                                '<div id="form-alunni-typeB"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
-                            );*/
-                            //$("#form-alunni-typeC").remove();
-                            break;
-
-                        case "C":
-                            $('#tutor').html(
-                                '<div id="html"> <label class = "form-label" > Tutor: </label> <select class = "form-select" aria - label = "Default select example" name = "id_tutor" required > <option selected disabled > Tutor: </option> <?php foreach ($list_doc as $row) : ?> <option value = "<?php echo $row['CF'] ?>"> <?php echo ($row['nome'] . " " . $row['cognome']) ?> </option> <?php endforeach ?> </select> </div>'
-                            );
-                            $("#typeA").remove();
-                            //$("#form-alunni-typeB").remove();
-                            /*$('#alunni-typeC').html(
-                                '<div id="form-alunni-typeC"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno7" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno8" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno9" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
-                            );*/
-                            break;
-                    }
-                });
-            });
-
-        //Serve per creare il multistep form 
-        $(document).ready(function() {
-            var current = 1,
-                current_step, next_step, steps;
-            steps = $("fieldset").length;
-            $(".next").click(function() {
-                current_step = $(this).parent();
-                next_step = $(this).parent().next();
-                next_step.show();
-                current_step.hide();
-                setProgressBar(++current);
-            });
-            $(".previous").click(function() {
-                current_step = $(this).parent();
-                next_step = $(this).parent().prev();
-                next_step.show();
-                current_step.hide();
-                setProgressBar(--current);
-            });
-            setProgressBar(current);
-            // Change progress bar action
-            function setProgressBar(curStep) {
-                var percent = parseFloat(100 / steps) * curStep;
-                percent = percent.toFixed();
-                $(".progress-bar")
-                    .css("width", percent + "%")
-                    .html(percent + "%");
+        $('input[type=datetime-local]').change(function(incontro) {
+            var data;
+            var dataSplit;
+            var tipologia = document.getElementById('tipologia');
+            data = $('#incontro1').val();
+            dataSplit = data.split('T');
+            incontro[0] = dataSplit[0];
+            data = $('#incontro2').val();
+            dataSplit = data.split('T');
+            incontro[1] = dataSplit[0];
+            data = $('#incontro3').val();
+            dataSplit = data.split('T');
+            incontro[2] = dataSplit[0];
+            data = $('#incontro4').val();
+            dataSplit = data.split('T');
+            incontro[3] = dataSplit[0];
+            if (tipologia == 'A') {
+                data = $('#incontro5').val();
+                dataSplit = data.split('T');
+                incontro[4] = dataSplit[0];
             }
-        });
+            console.log(incontro);
 
-        //Validazione del form
-        /*$(document).ready(function(str) {
-
-            $("#regiration_form").validate({
-                rules: {
-                    'tipologia': {
-                        required: true,
-                    },
-                    'id_quadrimestre': {
-                        required: true,
-                    },
-                    'materia': {
-                        required: true,
-                    },
-                    'data_inizio': {
-                        required: true,
-                    },
-                    'data_fine': {
-                        required: true,
-                    },
-                    'sede': {
-                        required: true,
-                    },
-                    'incontro1': {
-                        required: true,
-                    },
-                    'aula1': {
-                        required: true,
-                    },
-                    'incontro2': {
-                        required: true,
-                    },
-                    'aula2': {
-                        required: true,
-                    },
-                    'incontro3': {
-                        required: true,
-                    },
-                    'aula3': {
-                        required: true,
-                    },
-                    'incontro4': {
-                        required: true,
-                    },
-                    'aula4': {
-                        required: true,
-                    },
-                    'incontro5': {
-                        required: true,
-                    },
-                    'aula5': {
-                        required: true,
-                    },
-                    'alunno1': {
-                        required: false,
-                    },
-                    'alunno2': {
-                        required: false,
-                    },
-                    'alunno3': {
-                        required: false,
-                    },
-                    'alunno4': {
-                        required: false,
-                    },
-                    'alunno5': {
-                        required: false,
-                    },
-                    'alunno6': {
-                        required: false,
-                    },
-                    'alunno7': {
-                        required: false,
-                    },
-                    'alunno8': {
-                        required: false,
-                    },
-                    'alunno9': {
-                        required: false,
-                    }
-                },
-                messages: {
-                    'tipologia': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'id_quadrimestre': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'materia': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'data_inizio': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'data_fine': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'sede': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'incontro1': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'incontro2': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'incontro3': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'incontro4': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    'incontro5': {
-                        required: "Il campo è obbligatorio",
-                    },
-                    /*   'alunno1': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno2': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno3': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno4': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno5': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno6': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno7': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno8': {
-                           required: "Il campo è obbligatorio",
-                       },
-                       'alunno9': {
-                           required: "Il campo è obbligatorio",
-                       }
-                },
-                submitHandler: function(form) {
-                    form.submit();
-                }
+            $('input[type=datetime-local]').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                datesDisabled: incontro,
             });
         });*/
+    </script>
+
+    <script>
+    //Prende i valori che vengono selezionati nella tipologia del corso, per effettuare controlli in seguito.
+    $("#tipologia")
+        .change(function() {
+            $("#tipologia option:selected").each(function() {
+                var str = $(this).text();
+                //Se la tipologia del corso è la C allora faccio apparire il select del tutor altrimenti lo rimuovo
+                switch (str) {
+                    case "A":
+                        $("#html").remove();
+                        $('#form-typeA').html(
+                            '<div id="typeA"><label class="form-label">Quinto incontro <span id="obbligatorio"> *</span></label><input type="datetime-local" class="form-control" name="incontro5" id="incontro5"><label class="form-label">Aula: <span id="obbligatorio"> *</span></label><select class="form-select" aria-label="Default select example" name="aula5" required><option selected disabled>Aula:</option><?php foreach ($list_aule as $row) : ?><option value="<?php echo $row['id'] ?>"><?php echo ($row['nome'] . " --> " . $row['nomeBreve']) ?></option><?php endforeach ?></select></div>'
+                        );
+                        //$("#form-alunni-typeB").remove();
+                        //$("#form-alunni-typeC").remove();
+                        break;
+
+                    case "B":
+                        $("#html").remove();
+                        $("#typeA").remove();
+                        /*$('#alunni-typeB').html(
+                            '<div id="form-alunni-typeB"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                        );*/
+                        //$("#form-alunni-typeC").remove();
+                        break;
+
+                    case "C":
+                        $('#tutor').html(
+                            '<div id="html"> <label class = "form-label" > Tutor: </label> <select class = "form-select" aria - label = "Default select example" name = "id_tutor" required > <option selected disabled > Tutor: </option> <?php foreach ($list_doc as $row) : ?> <option value = "<?php echo $row['CF'] ?>"> <?php echo ($row['nome'] . " " . $row['cognome']) ?> </option> <?php endforeach ?> </select> </div>'
+                        );
+                        $("#typeA").remove();
+                        //$("#form-alunni-typeB").remove();
+                        /*$('#alunni-typeC').html(
+                            '<div id="form-alunni-typeC"><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno2" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno3" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno4" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno5" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno6" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno7" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno8" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div><div class="col-md-6 mb-3"><label class="form-label">Alunno:</label><select class="form-select" aria-label="Default select example" name="alunno9" required><option selected disabled>Alunni:</option><?php foreach ($list_al as $row) : ?><option value="<?php echo $row['CF'] ?>"><?php echo ($row['nome'] . " " . $row['cognome']) ?></option><?php endforeach ?></select></div></div>'
+                        );*/
+                        break;
+                }
+            });
+        });
+
+    //Serve per creare il multistep form 
+    $(document).ready(function() {
+        var current = 1,
+            current_step, next_step, steps;
+        steps = $("fieldset").length;
+        $(".next").click(function() {
+            current_step = $(this).parent();
+            next_step = $(this).parent().next();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(++current);
+        });
+        $(".previous").click(function() {
+            current_step = $(this).parent();
+            next_step = $(this).parent().prev();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(--current);
+        });
+        setProgressBar(current);
+        // Change progress bar action
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percent = percent.toFixed();
+            $(".progress-bar")
+                .css("width", percent + "%")
+                .html(percent + "%");
+        }
+    });
     </script>
 
     <?php
@@ -556,14 +441,15 @@ if (empty($_SESSION['user_id'])) {
     ?>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 </body>
 
 </html>
 
 <style type="text/css">
-    #regiration_form fieldset:not(:first-of-type) {
-        display: none;
-    }
+#regiration_form fieldset:not(:first-of-type) {
+    display: none;
+}
 </style>
